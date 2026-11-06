@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Figtree:wght@400;500;600;700&display=swap">
+</head>
+<body>
+﻿<title>Mitt jafnvægi</title>
+<style>
+/* Layout: one question per screen on a calm column; icon cards to tap; ends in two A4 sheets (a flowchart and a day plan). */
+:root {
+  --bg: #F4F8F4; --surface: #FFFFFF; --tint: #E6F0E9; --tint2: #F0F5F1; --line: #D3E1D7;
+  --ink: #1C2A23; --muted: #5A6B61; --deep: #1B4D3E; --mid: #2E7D5B; --on-deep: #FFFFFF; --sage: #9CC5AC; --gold: #C9A24B; --rose: #C46B5A;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E1914; --surface: #15241D; --tint: #1C3328; --tint2: #182B22; --line: #2A4336;
+  --ink: #E5EFE8; --muted: #A2B6AA; --deep: #A9D7BB; --mid: #6CC093; --on-deep: #0E1914; --sage: #4E7A62; --gold: #D7B565; --rose: #E08A78; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0E1914; --surface: #15241D; --tint: #1C3328; --tint2: #182B22; --line: #2A4336;
+  --ink: #E5EFE8; --muted: #A2B6AA; --deep: #A9D7BB; --mid: #6CC093; --on-deep: #0E1914; --sage: #4E7A62; --gold: #D7B565; --rose: #E08A78; color-scheme: dark }
+
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+body { background: var(--bg); color: var(--ink); font: 17px/1.5 var(--body); margin: 0 }
+.wrap { max-width: 620px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 24px 44px }
+.screen { display: flex; flex-direction: column; gap: 20px; animation: rise .45s ease both }
+@keyframes rise { from { opacity: .001; transform: translateY(10px) } to { opacity: 1; transform: none } }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; color: var(--deep); text-wrap: balance; margin: 0 }
+h1 { font-size: 2.15rem; line-height: 1.1 }
+h2 { font-size: 1.6rem; line-height: 1.18 }
+h3 { font-size: 1.15rem; line-height: 1.25 }
+p { margin: 0 }
+button { font: inherit; color: inherit; cursor: pointer }
+:focus-visible { outline: 2px solid var(--mid); outline-offset: 2px }
+svg.i { width: 1em; height: 1em; fill: currentColor; flex: none }
+.eyebrow { font-size: .74rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--mid) }
+.muted { color: var(--muted) }
+.fine { font-size: .78rem; color: var(--muted); line-height: 1.45 }
+sup.r { font-size: .62em; color: var(--mid); font-weight: 700; margin-left: 1px }
+
+/* progress */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px }
+.leaves { display: flex; gap: 3px; color: var(--line); font-size: 1.05rem }
+.leaves .on { color: var(--mid) }
+.leaves .now { color: var(--gold) }
+.part { font-size: .74rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
+
+/* hero */
+.hero { position: relative; background: var(--deep); color: var(--on-deep); border-radius: 22px; padding: 26px 22px 22px; overflow: hidden; display: flex; flex-direction: column; gap: 12px }
+.hero h1 { color: var(--on-deep); font-size: 2.4rem }
+.hero p { opacity: .9 }
+.hero .ridge { position: absolute; right: -10px; bottom: -6px; width: 62%; opacity: .32 }
+.hero .ridge path { fill: none; stroke: currentColor; stroke-width: 1.4 }
+.hero .starm { position: absolute; right: 22px; top: 20px; width: 34px; color: var(--gold) }
+.hero .starm line { stroke: currentColor; stroke-width: 1.6; stroke-linecap: round }
+.hero * { position: relative }
+.what { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+.what div { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px }
+.what .ico { width: 38px; height: 38px; border-radius: 50%; background: var(--tint); color: var(--deep); display: grid; place-items: center; font-size: 1.25rem }
+.what b { font-family: var(--display); font-weight: 500; font-size: 1.1rem; color: var(--deep) }
+.what span { font-size: .86rem; color: var(--muted) }
+.sign { font-family: var(--display); font-style: italic; color: var(--deep); font-size: 1.1rem }
+
+/* option cards */
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+.grid.one { grid-template-columns: 1fr }
+.card { position: relative; display: flex; flex-direction: column; gap: 8px; text-align: left; background: var(--surface); border: 1.5px solid var(--line); border-radius: 16px; padding: 14px; transition: border-color .15s, background .15s, transform .15s }
+.card.row { flex-direction: row; align-items: center; gap: 14px }
+.card .ico { width: 42px; height: 42px; border-radius: 50%; background: var(--tint); color: var(--deep); display: grid; place-items: center; font-size: 1.35rem; transition: background .15s, color .15s }
+.card b { font-weight: 600; line-height: 1.3 }
+.card small { display: block; color: var(--muted); font-size: .84rem; margin-top: 2px; line-height: 1.35 }
+.card .tick { position: absolute; right: 10px; top: 10px; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-size: .78rem; font-weight: 700; color: var(--on-deep) }
+.card[aria-pressed="true"] { border-color: var(--mid); background: color-mix(in srgb, var(--mid) 7%, var(--surface)) }
+.card[aria-pressed="true"] .ico { background: var(--mid); color: var(--on-deep) }
+.card[aria-pressed="true"] .tick { background: var(--mid); border-color: var(--mid); animation: pop .25s ease }
+@keyframes pop { 0% { transform: scale(.4) } 70% { transform: scale(1.15) } 100% { transform: scale(1) } }
+.card:active { transform: scale(.98) }
+.group-h { display: flex; align-items: center; gap: 8px; font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 6px }
+.group-h svg { font-size: 1.05rem; color: var(--mid) }
+.chips { display: flex; flex-wrap: wrap; gap: 7px }
+.chip { border: 1.5px solid var(--line); background: var(--surface); border-radius: 999px; padding: 8px 14px; font-size: .93rem; text-align: left }
+.chip[aria-pressed="true"] { background: var(--deep); border-color: var(--deep); color: var(--on-deep) }
+input[type=text] { width: 100%; font: inherit; color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px }
+label.f { display: flex; flex-direction: column; gap: 6px; font-weight: 600 }
+label.f .muted { font-weight: 400; font-size: .86rem }
+.count { font-size: .84rem; color: var(--muted) }
+
+/* window-of-tolerance mini */
+.wot { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px }
+.wot svg { width: 100%; height: auto; display: block }
+.wot .band { fill: var(--tint) }
+.wot .edge { stroke: var(--sage); stroke-dasharray: 4 4; stroke-width: 1 }
+.wot .ln { fill: none; stroke: var(--line); stroke-width: 2.2 }
+.wot .ln.on { stroke: var(--mid) }
+.wot text { fill: var(--muted); font: 600 10px var(--body); letter-spacing: .08em }
+.goal { background: var(--tint); border-radius: 12px; padding: 11px 14px; font-weight: 600; color: var(--deep) }
+
+/* nav */
+.nav { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-top: 4px }
+.btn { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--deep); background: var(--deep); color: var(--on-deep); border-radius: 999px; padding: 12px 22px; font-weight: 600 }
+.btn.ghost { background: transparent; color: var(--deep) }
+.btn.soft { background: var(--tint); border-color: var(--tint); color: var(--deep) }
+.btn[disabled] { opacity: .4; cursor: default }
+.hint { font-size: .88rem; color: var(--muted); margin-top: -8px }
+
+/* breath orb */
+.breath { display: flex; flex-direction: column; align-items: center; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 22px 16px }
+.orb-box { width: 200px; height: 200px; display: grid; place-items: center; position: relative }
+.orb { width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--sage) 75%, var(--surface)), var(--tint) 70%); border: 2px solid var(--sage); transform: scale(.5); transition-property: transform; transition-timing-function: ease-in-out }
+.orb-txt { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; font-family: var(--display); font-size: 1.45rem; color: var(--deep); pointer-events: none }
+.orb-txt small { display: block; font-family: var(--body); font-size: .8rem; color: var(--muted) }
+
+/* result */
+.done-hero { text-align: left; display: flex; flex-direction: column; gap: 8px; position: relative }
+.spark { position: absolute; right: 6px; top: -4px; color: var(--gold); font-size: 1.6rem; animation: twinkle 2.4s ease-in-out 2 }
+@keyframes twinkle { 0%, 100% { opacity: .35; transform: scale(.85) rotate(0) } 50% { opacity: 1; transform: scale(1.1) rotate(20deg) } }
+.methods { display: flex; flex-direction: column; gap: 10px }
+.m { display: grid; grid-template-columns: 54px 1fr auto; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px }
+.m .t { width: 54px; height: 54px; border-radius: 50%; background: var(--deep); color: var(--on-deep); display: grid; place-items: center; text-align: center; font-family: var(--display); line-height: 1; font-size: 1.05rem }
+.m .t small { display: block; font-family: var(--body); font-size: .6rem; letter-spacing: .08em; margin-top: 2px }
+.m b { display: flex; align-items: center; gap: 6px; font-weight: 600 }
+.m b svg { color: var(--mid) }
+.m span { font-size: .86rem; color: var(--muted) }
+.try { border: 0; background: var(--tint); color: var(--deep); font-weight: 600; font-size: .86rem; border-radius: 999px; padding: 8px 13px; white-space: nowrap }
+.actions { display: flex; flex-wrap: wrap; gap: 10px }
+.sheets { display: flex; flex-direction: column; gap: 14px }
+.preview { width: 100%; overflow: hidden; border-radius: 10px; border: 1px solid var(--line); background: #fff; box-shadow: 0 8px 28px rgba(20,40,30,.12) }
+.preview-inner { transform-origin: top left }
+details.refs { background: var(--tint2); border-radius: 12px; padding: 10px 14px }
+details.refs summary { cursor: pointer; font-size: .84rem; font-weight: 600; color: var(--muted) }
+details.refs ol { margin: 8px 0 2px; padding-left: 20px }
+
+/* sheet modal */
+.sheet-bg { position: fixed; inset: 0; background: rgba(10,20,15,.45); z-index: 20; display: flex; align-items: flex-end; justify-content: center }
+.sheet { background: var(--bg); width: 100%; max-width: 620px; max-height: 92%; overflow-y: auto; border-radius: 22px 22px 0 0; padding: 20px max(18px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; gap: 14px }
+.sheet-head { display: flex; justify-content: space-between; gap: 12px; align-items: start }
+.x { border: 0; background: var(--tint); width: 38px; height: 38px; border-radius: 50%; font-size: 1.05rem; flex: none; color: var(--deep) }
+.steps { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 8px }
+.steps li::marker { color: var(--mid); font-weight: 700 }
+
+@media (prefers-reduced-motion: reduce) { .screen, .card .tick, .spark { animation: none !important } .orb { transition: none !important } }
+@media (max-width: 380px) { .grid { grid-template-columns: 1fr } .what { grid-template-columns: 1fr } }
+
+/* ===== A4 sheets (always light) ===== */
+.a4 { width: 794px; height: 1123px; background: #FFFFFF; color: #1C2A23; font-family: var(--body); position: relative; overflow: hidden; padding: 50px 58px 40px; display: flex; flex-direction: column }
+.a4 svg.i { fill: currentColor }
+.a4 .k { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #2E7D5B }
+.a4 h1 { font-family: var(--display); font-weight: 500; font-size: 38px; line-height: 1.06; color: #1B4D3E; margin-top: 6px }
+.a4 .sub { font-size: 14.5px; color: #4E6157; margin-top: 7px }
+.a4 .star { position: absolute; right: 52px; top: 42px; width: 44px; height: 44px }
+.a4 sup { font-size: 8px; color: #2E7D5B; font-weight: 700; margin-left: 1px }
+.a4 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px }
+.a4 .tag { display: inline-flex; align-items: center; gap: 5px; background: #FFFFFF; border: 1px solid #CFE0D5; border-radius: 999px; padding: 3px 10px 3px 7px; font-size: 12.5px }
+.a4 .tag svg { color: #2E7D5B; width: 14px; height: 14px }
+.a4 .start { margin-top: 16px; background: #EEF4EF; border-radius: 14px; padding: 12px 16px }
+.a4 .start b { color: #1B4D3E; font-size: 14px }
+.a4 .vline { width: 2px; background: #9CC5AC; margin-left: 33px; height: 16px; position: relative }
+.a4 .vline.arrow::after { content: ""; position: absolute; left: -4px; bottom: -2px; border: 5px solid transparent; border-top: 7px solid #9CC5AC; border-bottom: 0 }
+.a4 .stp { display: grid; grid-template-columns: 68px 1fr; gap: 14px; align-items: stretch }
+.a4 .tm { width: 68px; height: 68px; border-radius: 50%; background: #1B4D3E; color: #fff; display: grid; place-items: center; text-align: center; font-family: var(--display); font-size: 19px; line-height: 1 }
+.a4 .tm small { display: block; font-family: var(--body); font-size: 8.5px; letter-spacing: .1em; margin-top: 3px; opacity: .85 }
+.a4 .sc { border: 1px solid #D3E1D7; border-radius: 14px; padding: 12px 16px 12px }
+.a4 .sc .hd { display: flex; align-items: center; gap: 8px }
+.a4 .sc .hd svg { width: 22px; height: 22px; color: #2E7D5B }
+.a4 .sc h3 { font-family: var(--display); font-weight: 500; font-size: 20px; color: #1B4D3E }
+.a4 .sc .lab { margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #6B7A71 }
+.a4 .sc ul { margin: 5px 0 0; padding-left: 17px; font-size: 13px; line-height: 1.42 }
+.a4 .sc .why { font-size: 10.5px; color: #6B7A71; margin-top: 4px }
+.a4 .dec { display: grid; grid-template-columns: 68px 1fr; gap: 14px; align-items: center; height: 50px }
+.a4 .dec .l { position: relative; height: 100%; }
+.a4 .dec .l::before { content: ""; position: absolute; left: 33px; top: 0; bottom: 0; width: 2px; background: #9CC5AC }
+.a4 .dec .l::after { content: ""; position: absolute; left: 29px; bottom: -2px; border: 5px solid transparent; border-top: 7px solid #9CC5AC; border-bottom: 0 }
+.a4 .dec .l span { position: absolute; left: 42px; top: 16px; font-size: 10.5px; font-weight: 700; color: #6B7A71; letter-spacing: .06em }
+.a4 .yes { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: #1B4D3E }
+.a4 .yes .q { background: #FFFFFF; border: 1.5px solid #9CC5AC; border-radius: 8px; padding: 3px 9px; font-weight: 700; transform: none }
+.a4 .yes .ok { background: #E3EFE7; border-radius: 999px; padding: 3px 11px; font-weight: 600 }
+.a4 .end { border: 1.5px dashed #9CC5AC; border-radius: 14px; padding: 11px 16px; font-size: 13.5px }
+.a4 .end b { color: #1B4D3E }
+.a4 .sent { margin-top: 24px; background: #1B4D3E; color: #fff; border-radius: 16px; padding: 14px 20px; display: flex; align-items: center; gap: 14px }
+.a4 .sent .k { color: #9CC5AC }
+.a4 .sent .q { font-family: var(--display); font-style: italic; font-size: 25px; line-height: 1.2 }
+.a4 .foot { margin-top: auto; padding-top: 10px; border-top: 1px solid #E1EAE4; display: flex; flex-direction: column; gap: 3px; font-size: 9.5px; color: #6B7A71; line-height: 1.4 }
+.a4 .foot .refs { display: flex; flex-wrap: wrap; gap: 0 12px }
+.a4 .day { margin-top: 18px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; position: relative }
+.a4 .day::before { content: ""; position: absolute; left: 12%; right: 12%; top: 25px; height: 2px; background: #CFE0D5 }
+.a4 .col { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative }
+.a4 .col .dot { width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; border: 2px solid #9CC5AC; display: grid; place-items: center; color: #1B4D3E }
+.a4 .col .dot svg { width: 26px; height: 26px }
+.a4 .col h3 { font-family: var(--display); font-weight: 500; font-size: 17px; color: #1B4D3E }
+.a4 .col .it { width: 100%; background: #EEF4EF; border-radius: 10px; padding: 7px 9px; font-size: 12px; line-height: 1.35 }
+.a4 .col .it b { display: block; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #2E7D5B; margin-bottom: 1px }
+.a4 .col .it.empty { background: transparent; border: 1px dashed #D3E1D7; color: #8A988F; text-align: center }
+.a4 .sec { margin-top: 14px }
+.a4 .sec h2 { font-family: var(--display); font-weight: 500; font-size: 20px; color: #1B4D3E; margin-bottom: 6px }
+.a4 .nour { display: flex; flex-wrap: wrap; gap: 7px }
+.a4 .nour span { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #CFE0D5; border-radius: 999px; padding: 5px 12px 5px 8px; font-size: 13px }
+.a4 .nour svg { width: 16px; height: 16px; color: #2E7D5B }
+.a4 .first { margin-top: 16px; background: #EEF4EF; border-radius: 14px; padding: 11px 16px; font-size: 14px }
+.a4 .first b { color: #1B4D3E }
+.a4 table { width: 100%; border-collapse: collapse; font-size: 12.5px }
+.a4 th { font-weight: 600; color: #5A6B61; font-size: 10.5px; text-align: center; padding: 3px 0 }
+.a4 th:first-child { text-align: left }
+.a4 td { border-top: 1px solid #E1EAE4; padding: 5px 0 }
+.a4 td.d { width: 32px; text-align: center }
+.a4 td.d span { display: inline-block; width: 15px; height: 15px; border: 1.3px solid #9CC5AC; border-radius: 4px }
+.a4 .quote { margin-top: 14px; font-family: var(--display); font-style: italic; font-size: 17px; color: #1B4D3E; text-align: center }
+.a4 .hdr { margin: -50px -58px 0; padding: 44px 58px 24px; background: #EEF4EF; position: relative; overflow: hidden }
+.a4 .hdr > * { position: relative }
+.a4 .hdr .ridge { position: absolute; right: 0; bottom: 0; width: 420px; height: 120px; opacity: .55 }
+.a4 .hdr .ridge path { fill: none; stroke: #9CC5AC; stroke-width: 1.3 }
+.a4 .hdr .star { position: absolute; top: 30px; right: 52px }
+.a4 .hrow { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px }
+.a4 .mywin { flex: none; width: 190px; background: rgba(255,255,255,.75); border: 1px solid #D3E1D7; border-radius: 14px; padding: 10px 10px 8px; display: flex; flex-direction: column; gap: 4px }
+.a4 .mywin svg { width: 170px; height: 104px }
+.a4 .mywin span { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #2E7D5B; text-align: center }
+.a4 .start { background: #FFFFFF; border: 1px solid #D3E1D7 }
+.a4 .tm { box-shadow: 0 0 0 5px #DCEBE1 }
+.a4 .col .dot { background: #EEF4EF }
+.a4 .note2 { font-size: 10.5px; color: #6B7A71; margin-top: 8px }
+.a4 .menu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px }
+.a4 .mi { display: flex; align-items: center; gap: 9px; border: 1px solid #D3E1D7; border-radius: 12px; padding: 6px 10px }
+.a4 .mi .mc { flex: none; width: 34px; height: 34px; border-radius: 50%; background: #EEF4EF; color: #1B4D3E; display: grid; place-items: center }
+.a4 .mi .mc svg { width: 19px; height: 19px }
+.a4 .mi b { display: block; font-size: 12.5px; font-weight: 600; line-height: 1.25 }
+.a4 .mi span { font-size: 11px; color: #6B7A71 }
+.offscreen { position: fixed; left: -10000px; top: 0 }
+</style>
+
+<div class="wrap" style="padding-bottom:0"><a href="index.html" style="color:var(--mid);font-weight:600;font-size:.9rem;text-decoration:none">← Verkfærakistan</a></div>
+<div class="wrap" id="app"></div>
+<div class="offscreen" id="render-zone" aria-hidden="true"></div>
+<div class="sheet-bg" id="sheet-bg" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title" id="sheet"></div></div>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "mitt-jafnvaegi-v2";
+  var ICONS = {"armchair":"M214,90.48V72a38,38,0,0,0-38-38H80A38,38,0,0,0,42,72V90.48a38,38,0,0,0,0,75.05V200a14,14,0,0,0,14,14H200a14,14,0,0,0,14-14V165.53a38,38,0,0,0,0-75ZM80,46h96a26,26,0,0,1,26,26V90.48A38.05,38.05,0,0,0,170,128v2H86v-2A38.05,38.05,0,0,0,54,90.48V72A26,26,0,0,1,80,46ZM208.35,154H208a6,6,0,0,0-6,6v40a2,2,0,0,1-2,2H56a2,2,0,0,1-2-2V160h0a6,6,0,0,0-6-6h-.35A26,26,0,1,1,74,128v40a6,6,0,0,0,12,0V142h84v26a6,6,0,0,0,12,0V128a26,26,0,1,1,26.35,26Z","arrow-fat-down":"M229.54,133.7A6,6,0,0,0,224,130H182V48a14,14,0,0,0-14-14H88A14,14,0,0,0,74,48v82H32a6,6,0,0,0-4.24,10.24l96,96a6,6,0,0,0,8.48,0l96-96A6,6,0,0,0,229.54,133.7ZM128,223.51,46.49,142H80a6,6,0,0,0,6-6V48a2,2,0,0,1,2-2h80a2,2,0,0,1,2,2v88a6,6,0,0,0,6,6h33.51Z","arrow-fat-up":"M228.24,115.76l-96-96a6,6,0,0,0-8.48,0l-96,96A6,6,0,0,0,32,126H74v82a14,14,0,0,0,14,14h80a14,14,0,0,0,14-14V126h42a6,6,0,0,0,4.24-10.24ZM176,114a6,6,0,0,0-6,6v88a2,2,0,0,1-2,2H88a2,2,0,0,1-2-2V120a6,6,0,0,0-6-6H46.49L128,32.49,209.51,114Z","arrow-right":"M220.24,132.24l-72,72a6,6,0,0,1-8.48-8.48L201.51,134H40a6,6,0,0,1,0-12H201.51L139.76,60.24a6,6,0,0,1,8.48-8.48l72,72A6,6,0,0,1,220.24,132.24Z","arrows-clockwise":"M222,48V96a6,6,0,0,1-6,6H168a6,6,0,0,1,0-12h33.52L183.47,72a81.51,81.51,0,0,0-57.53-24h-.46A81.5,81.5,0,0,0,68.19,71.28a6,6,0,1,1-8.38-8.58,93.38,93.38,0,0,1,65.67-26.76H126a93.45,93.45,0,0,1,66,27.53l18,18V48a6,6,0,0,1,12,0ZM187.81,184.72a81.5,81.5,0,0,1-57.29,23.34h-.46a81.51,81.51,0,0,1-57.53-24L54.48,166H88a6,6,0,0,0,0-12H40a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V174.48l18,18.05a93.45,93.45,0,0,0,66,27.53h.52a93.38,93.38,0,0,0,65.67-26.76,6,6,0,1,0-8.38-8.58Z","arrows-down-up":"M116.24,171.76a6,6,0,0,1,0,8.48l-32,32a6,6,0,0,1-8.48,0l-32-32a6,6,0,0,1,8.48-8.48L74,193.51V48a6,6,0,0,1,12,0V193.51l21.76-21.75A6,6,0,0,1,116.24,171.76Zm96-96-32-32a6,6,0,0,0-8.48,0l-32,32a6,6,0,0,0,8.48,8.48L170,62.49V208a6,6,0,0,0,12,0V62.49l21.76,21.75a6,6,0,0,0,8.48-8.48Z","barbell":"M248,122H238V88a14,14,0,0,0-14-14H206V64a14,14,0,0,0-14-14H168a14,14,0,0,0-14,14v58H102V64A14,14,0,0,0,88,50H64A14,14,0,0,0,50,64V74H32A14,14,0,0,0,18,88v34H8a6,6,0,0,0,0,12H18v34a14,14,0,0,0,14,14H50v10a14,14,0,0,0,14,14H88a14,14,0,0,0,14-14V134h52v58a14,14,0,0,0,14,14h24a14,14,0,0,0,14-14V182h18a14,14,0,0,0,14-14V134h10a6,6,0,0,0,0-12ZM32,170a2,2,0,0,1-2-2V88a2,2,0,0,1,2-2H50v84Zm58,22a2,2,0,0,1-2,2H64a2,2,0,0,1-2-2V64a2,2,0,0,1,2-2H88a2,2,0,0,1,2,2Zm104,0a2,2,0,0,1-2,2H168a2,2,0,0,1-2-2V64a2,2,0,0,1,2-2h24a2,2,0,0,1,2,2Zm32-24a2,2,0,0,1-2,2H206V86h18a2,2,0,0,1,2,2Z","battery-charging":"M200,58H32A22,22,0,0,0,10,80v96a22,22,0,0,0,22,22H200a22,22,0,0,0,22-22V80A22,22,0,0,0,200,58Zm10,118a10,10,0,0,1-10,10H32a10,10,0,0,1-10-10V80A10,10,0,0,1,32,70H200a10,10,0,0,1,10,10Zm44-80v64a6,6,0,0,1-12,0V96a6,6,0,0,1,12,0ZM137.1,124.85a6,6,0,0,1,.27,5.83l-16,32a6,6,0,1,1-10.74-5.36L122.29,134H100a6,6,0,0,1-5.37-8.68l16-32a6,6,0,0,1,10.74,5.36L109.71,122H132A6,6,0,0,1,137.1,124.85Z","battery-low":"M200,58H32A22,22,0,0,0,10,80v96a22,22,0,0,0,22,22H200a22,22,0,0,0,22-22V80A22,22,0,0,0,200,58Zm10,118a10,10,0,0,1-10,10H32a10,10,0,0,1-10-10V80A10,10,0,0,1,32,70H200a10,10,0,0,1,10,10ZM62,96v64a6,6,0,0,1-12,0V96a6,6,0,0,1,12,0Zm192,0v64a6,6,0,0,1-12,0V96a6,6,0,0,1,12,0Z","bed":"M216,74H30V48a6,6,0,0,0-12,0V208a6,6,0,0,0,12,0V174H242v34a6,6,0,0,0,12,0V112A38,38,0,0,0,216,74ZM30,86h76v76H30Zm88,76V86h98a26,26,0,0,1,26,26v50Z","brain":"M246,124a54.13,54.13,0,0,0-32-49.33V72a46,46,0,0,0-86-22.67A46,46,0,0,0,42,72v2.67a54,54,0,0,0,0,98.63V176a46,46,0,0,0,86,22.67A46,46,0,0,0,214,176v-2.7A54.07,54.07,0,0,0,246,124ZM88,210a34,34,0,0,1-34-32.94A53.67,53.67,0,0,0,64,178h8a6,6,0,0,0,0-12H64A42,42,0,0,1,50,84.39a6,6,0,0,0,4-5.66V72a34,34,0,0,1,68,0v73.05A45.89,45.89,0,0,0,88,130a6,6,0,0,0,0,12,34,34,0,0,1,0,68Zm104-44h-8a6,6,0,0,0,0,12h8a53.67,53.67,0,0,0,10-.94A34,34,0,1,1,168,142a6,6,0,0,0,0-12,45.89,45.89,0,0,0-34,15.05V72a34,34,0,0,1,68,0v6.73a6,6,0,0,0,4,5.66A42,42,0,0,1,192,166Zm14-54a6,6,0,0,1-6,6h-4a34,34,0,0,1-34-34V80a6,6,0,0,1,12,0v4a22,22,0,0,0,22,22h4A6,6,0,0,1,206,112ZM60,118H56a6,6,0,0,1,0-12h4A22,22,0,0,0,82,84V80a6,6,0,0,1,12,0v4A34,34,0,0,1,60,118Z","chat-centered-dots":"M138,120a10,10,0,1,1-10-10A10,10,0,0,1,138,120ZM84,110a10,10,0,1,0,10,10A10,10,0,0,0,84,110Zm88,0a10,10,0,1,0,10,10A10,10,0,0,0,172,110Zm58-54V184a14,14,0,0,1-14,14H154.41L140.16,223a14,14,0,0,1-24.32,0L101.59,198H40a14,14,0,0,1-14-14V56A14,14,0,0,1,40,42H216A14,14,0,0,1,230,56Zm-12,0a2,2,0,0,0-2-2H40a2,2,0,0,0-2,2V184a2,2,0,0,0,2,2h65.07a6,6,0,0,1,5.21,3l16,28a2,2,0,0,0,3.48,0l16-28a6,6,0,0,1,5.21-3H216a2,2,0,0,0,2-2Z","chat-circle":"M128,26A102,102,0,0,0,38.35,176.69L26.73,211.56a14,14,0,0,0,17.71,17.71l34.87-11.62A102,102,0,1,0,128,26Zm0,192a90,90,0,0,1-45.06-12.08,6.09,6.09,0,0,0-3-.81,6.2,6.2,0,0,0-1.9.31L40.65,217.88a2,2,0,0,1-2.53-2.53L50.58,178a6,6,0,0,0-.5-4.91A90,90,0,1,1,128,218Z","check":"M228.24,76.24l-128,128a6,6,0,0,1-8.48,0l-56-56a6,6,0,0,1,8.48-8.48L96,191.51,219.76,67.76a6,6,0,0,1,8.48,8.48Z","cloud":"M160,42A86.11,86.11,0,0,0,82.43,90.88,62,62,0,1,0,72,214h88a86,86,0,0,0,0-172Zm0,160H72a50,50,0,0,1,0-100,50.67,50.67,0,0,1,5.91.35A85.61,85.61,0,0,0,74,128a6,6,0,0,0,12,0,74,74,0,1,1,74,74Z","coffee":"M82,56V24a6,6,0,0,1,12,0V56a6,6,0,0,1-12,0Zm38,6a6,6,0,0,0,6-6V24a6,6,0,0,0-12,0V56A6,6,0,0,0,120,62Zm32,0a6,6,0,0,0,6-6V24a6,6,0,0,0-12,0V56A6,6,0,0,0,152,62Zm94,58v8a38,38,0,0,1-36.94,38,94.55,94.55,0,0,1-31.13,44H208a6,6,0,0,1,0,12H32a6,6,0,0,1,0-12H62.07A94.34,94.34,0,0,1,26,136V88a6,6,0,0,1,6-6H208A38,38,0,0,1,246,120Zm-44,16V94H38v42a82.27,82.27,0,0,0,46.67,74h70.66A82.27,82.27,0,0,0,202,136Zm32-16a26,26,0,0,0-20-25.29V136a93.18,93.18,0,0,1-1.69,17.64A26,26,0,0,0,234,128Z","door-open":"M232,218H206V40a14,14,0,0,0-14-14H64A14,14,0,0,0,50,40V218H24a6,6,0,0,0,0,12H232a6,6,0,0,0,0-12ZM194,40V218H174V38h18A2,2,0,0,1,194,40ZM62,40a2,2,0,0,1,2-2h98V218H62Zm80,92a10,10,0,1,1-10-10A10,10,0,0,1,142,132Z","download-simple":"M222,144v64a6,6,0,0,1-6,6H40a6,6,0,0,1-6-6V144a6,6,0,0,1,12,0v58H210V144a6,6,0,0,1,12,0Zm-98.24,4.24a6,6,0,0,0,8.48,0l40-40a6,6,0,0,0-8.48-8.48L134,129.51V32a6,6,0,0,0-12,0v97.51L92.24,99.76a6,6,0,0,0-8.48,8.48Z","drop":"M172.53,49.06a252.86,252.86,0,0,0-41.09-38,6,6,0,0,0-6.88,0,252.86,252.86,0,0,0-41.09,38C56.34,80.26,42,113.09,42,144a86,86,0,0,0,172,0C214,113.09,199.66,80.26,172.53,49.06ZM128,218a74.09,74.09,0,0,1-74-74c0-59.62,59-108.93,74-120.51C143,35.07,202,84.38,202,144A74.09,74.09,0,0,1,128,218Zm53.92-65A55.58,55.58,0,0,1,137,197.92a7,7,0,0,1-1,.08,6,6,0,0,1-1-11.92c17.38-2.92,32.13-17.68,35.08-35.08a6,6,0,1,1,11.84,2Z","eye":"M245.48,125.57c-.34-.78-8.66-19.23-27.24-37.81C201,70.54,171.38,50,128,50S55,70.54,37.76,87.76c-18.58,18.58-26.9,37-27.24,37.81a6,6,0,0,0,0,4.88c.34.77,8.66,19.22,27.24,37.8C55,185.47,84.62,206,128,206s73-20.53,90.24-37.75c18.58-18.58,26.9-37,27.24-37.8A6,6,0,0,0,245.48,125.57ZM128,194c-31.38,0-58.78-11.42-81.45-33.93A134.77,134.77,0,0,1,22.69,128,134.56,134.56,0,0,1,46.55,95.94C69.22,73.42,96.62,62,128,62s58.78,11.42,81.45,33.94A134.56,134.56,0,0,1,233.31,128C226.94,140.21,195,194,128,194Zm0-112a46,46,0,1,0,46,46A46.06,46.06,0,0,0,128,82Zm0,80a34,34,0,1,1,34-34A34,34,0,0,1,128,162Z","flower":"M209.35,131.09a42.24,42.24,0,0,0-6.82-3.09,42.24,42.24,0,0,0,6.82-3.09,38,38,0,1,0-38-65.82,43.33,43.33,0,0,0-6.08,4.36A42.94,42.94,0,0,0,166,56a38,38,0,0,0-76,0,42.94,42.94,0,0,0,.73,7.45,43.33,43.33,0,0,0-6.08-4.36,38,38,0,0,0-38,65.82A42.24,42.24,0,0,0,53.47,128a42.24,42.24,0,0,0-6.82,3.09,38,38,0,0,0,9.16,69.62,38.53,38.53,0,0,0,9.9,1.31,37.82,37.82,0,0,0,18.94-5.11,43.33,43.33,0,0,0,6.08-4.36A42.94,42.94,0,0,0,90,200a38,38,0,0,0,76,0,42.94,42.94,0,0,0-.73-7.45,43.33,43.33,0,0,0,6.08,4.36A37.82,37.82,0,0,0,190.29,202a38.53,38.53,0,0,0,9.9-1.31,38,38,0,0,0,9.16-69.62Zm-32-61.61a26,26,0,1,1,26,45c-4.77,2.75-14.92,6.15-36.4,7.47l-1.44-.08A38,38,0,0,0,152,98.58l.66-1.31C164.56,79.33,172.58,72.24,177.35,69.48ZM128,154a26,26,0,1,1,26-26A26,26,0,0,1,128,154Zm0-124a26,26,0,0,1,26,26c0,5.51-2.13,16-11.73,35.27-.26.4-.53.8-.79,1.21a37.88,37.88,0,0,0-27,0l-.79-1.22C104.13,72,102,61.51,102,56A26,26,0,0,1,128,30ZM52.65,114.52a26,26,0,0,1,26-45c4.77,2.76,12.79,9.85,24.67,27.79l.66,1.31a38,38,0,0,0-13.49,23.33l-1.44.08C67.57,120.67,57.42,117.27,52.65,114.52Zm26,72a26,26,0,0,1-26-45c4.77-2.75,14.92-6.15,36.4-7.47l1.44.08A38,38,0,0,0,104,157.42l-.66,1.31C91.44,176.67,83.42,183.76,78.65,186.52ZM128,226a26,26,0,0,1-26-26c0-5.51,2.13-16,11.73-35.27.26-.4.53-.8.79-1.21a37.88,37.88,0,0,0,27,0l.79,1.22C151.87,184,154,194.49,154,200A26,26,0,0,1,128,226Zm84.87-49a26,26,0,0,1-35.52,9.52c-4.77-2.76-12.79-9.85-24.67-27.79l-.66-1.31a38,38,0,0,0,13.49-23.33L167,134c21.48,1.32,31.63,4.72,36.4,7.47A26,26,0,0,1,212.87,177Z","footprints":"M104,162H48a6,6,0,0,0-6,6v12a34,34,0,0,0,68,0V168A6,6,0,0,0,104,162Zm-6,18a22,22,0,0,1-44,0v-6H98ZM76,18C65.2,18,54.56,27.91,46,45.9c-13.66,28.82-18.29,71.53,0,93.9a6,6,0,0,0,4.65,2.2h50.53a6,6,0,0,0,4.65-2.2c18.32-22.37,13.69-65.08,0-93.9C97.41,27.91,86.77,18,76,18ZM98.23,130H53.74c-10.09-15.18-11.69-47.65,3.14-79C64.24,35.51,71.77,30,76,30s11.75,5.51,19.1,21C109.92,82.35,108.32,114.82,98.23,130ZM208,186H152a6,6,0,0,0-6,6v12a34,34,0,0,0,68,0V192A6,6,0,0,0,208,186Zm-6,18a22,22,0,0,1-44,0v-6h44Zm-47.27-38h50.53a6,6,0,0,0,4.65-2.2c18.32-22.37,13.69-65.08,0-93.9C201.44,51.91,190.8,42,180,42s-21.43,9.91-30,27.9c-13.66,28.82-18.29,71.53,0,93.9A6,6,0,0,0,154.75,166Zm6.17-91c7.35-15.53,14.88-21,19.1-21s11.74,5.51,19.1,21c14.83,31.31,13.23,63.78,3.14,79H157.77C147.68,138.82,146.08,106.35,160.92,75Z","hand-heart":"M229.12,142.65a22.43,22.43,0,0,0-19.55-3.88l-4.32,1C227,119.55,238,99.51,238,80c0-25.36-20.39-46-45.46-46A45.51,45.51,0,0,0,156,52a45.51,45.51,0,0,0-36.54-18C94.39,34,74,54.64,74,80c0,11.38,3.63,22.49,11.29,34.36a29.73,29.73,0,0,0-16.56,8.43L45.52,146H16A14,14,0,0,0,2,160v40a14,14,0,0,0,14,14H120a6,6,0,0,0,1.46-.18l64-16a7.16,7.16,0,0,0,.89-.3L225.17,181l.33-.15a22.6,22.6,0,0,0,3.62-38.18ZM119.46,46a33.16,33.16,0,0,1,31,20.28,6,6,0,0,0,11.1,0,33.16,33.16,0,0,1,31-20.28C210.68,46,226,61.57,226,80c0,20.24-16.18,43-46.8,65.75l-14.87,3.42A26,26,0,0,0,140,114H99.67C90.36,101.67,86,90.81,86,80,86,61.57,101.32,46,119.46,46ZM14,200V160a2,2,0,0,1,2-2H42v44H16A2,2,0,0,1,14,200Zm206.28-30-38.2,16.27L119.26,202H54V154.49l23.21-23.22A17.88,17.88,0,0,1,89.94,126H140a14,14,0,0,1,0,28H112a6,6,0,0,0,0,12h32a6,6,0,0,0,1.34-.15l67-15.41.24-.06A10.6,10.6,0,0,1,220.28,170Z","hand-palm":"M188,90a25.8,25.8,0,0,0-14,4.11V60a26,26,0,0,0-40.59-21.51A26,26,0,0,0,82,44V54.11A26,26,0,0,0,42,76v76a86,86,0,0,0,172,0V116A26,26,0,0,0,188,90Zm14,62a74,74,0,0,1-148,0V76a14,14,0,0,1,28,0v44a6,6,0,0,0,12,0V44a14,14,0,0,1,28,0v68a6,6,0,0,0,12,0V60a14,14,0,0,1,28,0v70.39A46.07,46.07,0,0,0,122,176a6,6,0,0,0,12,0,34,34,0,0,1,34-34,6,6,0,0,0,6-6V116a14,14,0,0,1,28,0Z","handshake":"M252.51,108.8,227,57.75a14,14,0,0,0-18.78-6.27L182.66,64.26,129.53,50.2a6.1,6.1,0,0,0-3.06,0L73.34,64.26,47.79,51.48A14,14,0,0,0,29,57.75L3.49,108.8a14,14,0,0,0,6.26,18.78L36.9,141.16l55.61,39.72a6,6,0,0,0,2,.94l64,16A6.08,6.08,0,0,0,160,198a6,6,0,0,0,4.24-1.76l55.31-55.31,26.7-13.35a14,14,0,0,0,6.26-18.78Zm-53,35.16-35.8-28.68a6,6,0,0,0-8,.45c-18.65,18.79-39.5,16.42-52.79,7.92a2,2,0,0,1-.94-1.5,1.9,1.9,0,0,1,.51-1.55L146.43,78h33.86l28.41,56.82ZM14.11,115.69a2,2,0,0,1,.11-1.52L39.74,63.11a2,2,0,0,1,1.8-1.1,2,2,0,0,1,.89.21l22.21,11.1L37.32,128l-22.21-11.1A2,2,0,0,1,14.11,115.69Zm144.05,69.67-59.6-14.9L47.66,134.1,76.84,75.75,128,62.21l14.8,3.92a5.92,5.92,0,0,0-3,1.57L94.1,112.05a14,14,0,0,0,2.39,21.72c20.22,12.92,44.75,10.49,63.8-5.89L191,152.5Zm83.73-69.67a2,2,0,0,1-1,1.16L218.68,128,191.36,73.32l22.21-11.1a2,2,0,0,1,1.53-.11,2,2,0,0,1,1.16,1l25.52,51.06A2,2,0,0,1,241.89,115.69Zm-112,101.76a6,6,0,0,1-7.27,4.37L80.89,211.39a5.88,5.88,0,0,1-2-.94L52.52,191.64a6,6,0,1,1,7-9.77L84.91,200l40.61,10.15A6,6,0,0,1,129.88,217.45Z","heart":"M178,42c-21,0-39.26,9.47-50,25.34C117.26,51.47,99,42,78,42a60.07,60.07,0,0,0-60,60c0,29.2,18.2,59.59,54.1,90.31a334.68,334.68,0,0,0,53.06,37,6,6,0,0,0,5.68,0,334.68,334.68,0,0,0,53.06-37C219.8,161.59,238,131.2,238,102A60.07,60.07,0,0,0,178,42ZM128,217.11C111.59,207.64,30,157.72,30,102A48.05,48.05,0,0,1,78,54c20.28,0,37.31,10.83,44.45,28.27a6,6,0,0,0,11.1,0C140.69,64.83,157.72,54,178,54a48.05,48.05,0,0,1,48,48C226,157.72,144.41,207.64,128,217.11Z","heartbeat":"M72,142H32a6,6,0,0,1,0-12H68.79L83,108.67a6,6,0,0,1,10,0l27,40.51,11-16.51a6,6,0,0,1,5-2.67h24a6,6,0,0,1,0,12H139.21L125,163.33a6,6,0,0,1-10,0L88,122.82,77,139.33A6,6,0,0,1,72,142ZM178,42c-21,0-39.26,9.47-50,25.34C117.26,51.47,99,42,78,42a60.07,60.07,0,0,0-60,60q0,1.09,0,2.19a6,6,0,0,0,12-.38c0-.6,0-1.21,0-1.81A48.05,48.05,0,0,1,78,54c20.28,0,37.31,10.83,44.45,28.27a6,6,0,0,0,11.1,0C140.69,64.83,157.72,54,178,54a48.05,48.05,0,0,1,48,48c0,55.73-81.61,105.65-98,115.11-9.84-5.66-43.09-25.82-68.16-53.16a6,6,0,1,0-8.84,8.1c30.94,33.77,72.41,56.29,74.16,57.23a6,6,0,0,0,5.68,0,334.68,334.68,0,0,0,53.06-37C219.8,161.59,238,131.2,238,102A60.07,60.07,0,0,0,178,42Z","house":"M217.9,110.1l-80-80a14,14,0,0,0-19.8,0l-80,80A13.92,13.92,0,0,0,34,120v96a6,6,0,0,0,6,6h64a6,6,0,0,0,6-6V158h36v58a6,6,0,0,0,6,6h64a6,6,0,0,0,6-6V120A13.92,13.92,0,0,0,217.9,110.1ZM210,210H158V152a6,6,0,0,0-6-6H104a6,6,0,0,0-6,6v58H46V120a2,2,0,0,1,.58-1.42l80-80a2,2,0,0,1,2.84,0l80,80A2,2,0,0,1,210,120Z","leaf":"M221.45,40.19a6,6,0,0,0-5.64-5.64C140.43,30.11,80.14,52.71,54.53,95c-17.44,28.79-16.76,62.8,1.79,96.2L35.76,211.76a6,6,0,1,0,8.48,8.48L64.8,199.68c17.27,9.59,34.7,14.41,51.49,14.41A85.38,85.38,0,0,0,161,201.47C203.29,175.86,225.88,115.57,221.45,40.19Zm-66.66,151c-24.08,14.58-52.64,14.37-81.13-.39l90.59-90.59a6,6,0,0,0-8.48-8.48L65.18,182.34c-14.76-28.49-15-57-.39-81.13,22.68-37.43,76.63-57.8,145-54.95C212.59,114.58,192.22,168.54,154.79,191.21Z","lightning":"M213.84,118.63a6,6,0,0,0-3.73-4.25L150.88,92.17l15-75a6,6,0,0,0-10.27-5.27l-112,120a6,6,0,0,0,2.28,9.71l59.23,22.21-15,75a6,6,0,0,0,3.14,6.52A6.07,6.07,0,0,0,96,246a6,6,0,0,0,4.39-1.91l112-120A6,6,0,0,0,213.84,118.63ZM106,220.46l11.85-59.28a6,6,0,0,0-3.77-6.8l-55.6-20.85,91.46-98L138.12,94.82a6,6,0,0,0,3.77,6.8l55.6,20.85Z","moon":"M232.13,143.64a6,6,0,0,0-6-1.49A90.07,90.07,0,0,1,113.86,29.85a6,6,0,0,0-7.49-7.48A102.88,102.88,0,0,0,54.48,58.68,102,102,0,0,0,197.32,201.52a102.88,102.88,0,0,0,36.31-51.89A6,6,0,0,0,232.13,143.64Zm-42,48.29a90,90,0,0,1-126-126A90.9,90.9,0,0,1,99.65,37.66,102.06,102.06,0,0,0,218.34,156.35,90.9,90.9,0,0,1,190.1,191.93Z","moon-stars":"M238,96a6,6,0,0,1-6,6H214v18a6,6,0,0,1-12,0V102H184a6,6,0,0,1,0-12h18V72a6,6,0,0,1,12,0V90h18A6,6,0,0,1,238,96ZM144,54h10V64a6,6,0,0,0,12,0V54h10a6,6,0,0,0,0-12H166V32a6,6,0,0,0-12,0V42H144a6,6,0,0,0,0,12Zm71.25,100.28a6,6,0,0,1,1.07,6A94,94,0,1,1,95.76,39.68a6,6,0,0,1,7.94,6.79A90.11,90.11,0,0,0,192,154a90.9,90.9,0,0,0,17.53-1.7A6,6,0,0,1,215.25,154.28Zm-14.37,11.34q-4.42.38-8.88.38A102.12,102.12,0,0,1,90,64q0-4.45.38-8.88a82,82,0,1,0,110.5,110.5Z","music-notes":"M211.69,19.27a6,6,0,0,0-5.15-1.09l-128,32A6,6,0,0,0,74,56V170.11A34,34,0,1,0,86,196V108.68l116-29v58.43A34,34,0,1,0,214,164V24A6,6,0,0,0,211.69,19.27ZM52,218a22,22,0,1,1,22-22A22,22,0,0,1,52,218ZM86,96.32V60.68l116-29V67.32ZM180,186a22,22,0,1,1,22-22A22,22,0,0,1,180,186Z","palette":"M199.37,55.31A101.32,101.32,0,0,0,128,26h-1A102,102,0,0,0,26,128c0,42.09,26.07,77.44,68,92.26A30.21,30.21,0,0,0,104.11,222,30.06,30.06,0,0,0,134,192a18,18,0,0,1,18-18h46.21a29.82,29.82,0,0,0,29.25-23.31A102.71,102.71,0,0,0,230,127.11,101.25,101.25,0,0,0,199.37,55.31ZM215.76,148a17.89,17.89,0,0,1-17.55,14H152a30,30,0,0,0-30,30,18,18,0,0,1-24,17C61,195.86,38,164.85,38,128a90,90,0,0,1,89.07-90H128a90.34,90.34,0,0,1,90,89.22A90.46,90.46,0,0,1,215.76,148ZM138,76a10,10,0,1,1-10-10A10,10,0,0,1,138,76ZM94,100A10,10,0,1,1,84,90,10,10,0,0,1,94,100Zm0,56a10,10,0,1,1-10-10A10,10,0,0,1,94,156Zm88-56a10,10,0,1,1-10-10A10,10,0,0,1,182,100Z","pencil-simple":"M225.9,74.78,181.21,30.09a14,14,0,0,0-19.8,0L38.1,153.41a13.94,13.94,0,0,0-4.1,9.9V208a14,14,0,0,0,14,14H92.69a13.94,13.94,0,0,0,9.9-4.1L225.9,94.58a14,14,0,0,0,0-19.8ZM94.1,209.41a2,2,0,0,1-1.41.59H48a2,2,0,0,1-2-2V163.31a2,2,0,0,1,.59-1.41L136,72.48,183.51,120ZM217.41,86.1,192,111.51,144.49,64,169.9,38.58a2,2,0,0,1,2.83,0l44.68,44.69a2,2,0,0,1,0,2.83Z","person":"M128,70A30,30,0,1,0,98,40,30,30,0,0,0,128,70Zm0-48a18,18,0,1,1-18,18A18,18,0,0,1,128,22Zm88.88,113.42L171.67,84.16A30,30,0,0,0,149.17,74H106.83a30,30,0,0,0-22.5,10.15L39.12,135.42A18,18,0,0,0,64.46,161l21.11-16.93L67.44,212.92a18,18,0,0,0,32.75,14.94L128,180l27.81,47.91a18,18,0,0,0,32.75-14.94l-18.13-68.87L191.54,161a18,18,0,0,0,25.34-25.56Zm-8.63,16.82a6,6,0,0,1-8.49,0,4.15,4.15,0,0,0-.49-.44l-35.51-28.48a6,6,0,0,0-9.56,6.2l22.87,86.93a7.66,7.66,0,0,0,.37,1,6,6,0,0,1-10.88,5.07,4.37,4.37,0,0,0-.25-.48L133.19,165a6,6,0,0,0-10.38,0L89.69,222.05a4.37,4.37,0,0,0-.25.48,6,6,0,0,1-10.88-5.07,7.66,7.66,0,0,0,.37-1l22.87-86.93A6,6,0,0,0,99.27,123,6.07,6.07,0,0,0,96,122a6,6,0,0,0-3.76,1.32L56.73,151.8a4.15,4.15,0,0,0-.49.44,6,6,0,0,1-8.49-8.49l.26-.27L93.33,92.09A18,18,0,0,1,106.83,86h42.34a18,18,0,0,1,13.5,6.09L208,143.48l.26.27A6,6,0,0,1,208.25,152.24Z","person-arms-spread":"M128,70A30,30,0,1,0,98,40,30,30,0,0,0,128,70Zm0-48a18,18,0,1,1-18,18A18,18,0,0,1,128,22ZM229.55,88.14A17.66,17.66,0,0,0,212,74H44a18,18,0,0,0-7.55,34.34l.1,0,52.32,23-21.44,81.5A18,18,0,0,0,84,238a18.07,18.07,0,0,0,16.19-10.14L128,180l27.81,47.91a18,18,0,0,0,32.73-14.94l-21.44-81.5,52.32-23,.1,0A17.66,17.66,0,0,0,229.55,88.14Zm-15,9.29-56.95,25.08a6,6,0,0,0-3.39,7l22.87,86.93a7.66,7.66,0,0,0,.37,1,6,6,0,0,1-10.88,5.07,4.3,4.3,0,0,0-.24-.48L133.19,165a6,6,0,0,0-10.38,0L89.69,222.05c-.09.16-.17.31-.25.48a6,6,0,0,1-8,2.9,6,6,0,0,1-2.9-8,7.66,7.66,0,0,0,.37-1l22.87-86.93a6,6,0,0,0-3.39-7L41.47,97.43A6,6,0,0,1,44,86H212a6,6,0,0,1,2.56,11.43Z","phone-slash":"M52.44,36A6,6,0,0,0,43.56,44L73.08,76.51a139.32,139.32,0,0,0-47.27,31.08c-19.25,19.26-21.11,47.65-4.52,69A14,14,0,0,0,37.39,181l49-17.37.22-.09a13.93,13.93,0,0,0,8.53-10.25l5.9-29.51a2,2,0,0,1,1.21-1.47,80.07,80.07,0,0,1,10-2.75L203.56,220a6,6,0,0,0,8.88-8.08ZM98.29,111a14,14,0,0,0-9,10.45L83.37,151a2,2,0,0,1-1.15,1.43L33.28,169.77l-.22.08a2,2,0,0,1-2.29-.58c-13-16.73-11.56-38.11,3.53-53.19A127.91,127.91,0,0,1,81.75,86l21.34,23.48C101.47,110,99.87,110.47,98.29,111Zm136.42,65.61a14,14,0,0,1-16.1,4.41l-9.28-3.29a6,6,0,1,1,4-11.31l9.38,3.33.22.08a2,2,0,0,0,2.29-.58c13-16.73,11.56-38.11-3.53-53.19C195.64,90,158.86,76.2,120.83,78.19a6,6,0,1,1-.63-12c41.44-2.15,81.52,12.93,110,41.39C249.44,126.85,251.3,155.24,234.71,176.63Z","play":"M231.36,116.19,87.28,28.06a14,14,0,0,0-14.18-.27A13.69,13.69,0,0,0,66,39.87V216.13a13.69,13.69,0,0,0,7.1,12.08,14,14,0,0,0,14.18-.27l144.08-88.13a13.82,13.82,0,0,0,0-23.62Zm-6.26,13.38L81,217.7a2,2,0,0,1-2.06,0,1.78,1.78,0,0,1-1-1.61V39.87a1.78,1.78,0,0,1,1-1.61A2.06,2.06,0,0,1,80,38a2,2,0,0,1,1,.31L225.1,126.43a1.82,1.82,0,0,1,0,3.14Z","quotes":"M100,58H40A14,14,0,0,0,26,72v64a14,14,0,0,0,14,14h62v10a34,34,0,0,1-34,34,6,6,0,0,0,0,12,46.06,46.06,0,0,0,46-46V72A14,14,0,0,0,100,58Zm2,80H40a2,2,0,0,1-2-2V72a2,2,0,0,1,2-2h60a2,2,0,0,1,2,2ZM216,58H156a14,14,0,0,0-14,14v64a14,14,0,0,0,14,14h62v10a34,34,0,0,1-34,34,6,6,0,0,0,0,12,46.06,46.06,0,0,0,46-46V72A14,14,0,0,0,216,58Zm2,80H156a2,2,0,0,1-2-2V72a2,2,0,0,1,2-2h60a2,2,0,0,1,2,2Z","smiley":"M173.19,155c-9.92,17.16-26.39,27-45.19,27s-35.27-9.84-45.19-27a6,6,0,0,1,10.38-6c7.84,13.54,20.2,21,34.81,21s27-7.46,34.81-21a6,6,0,1,1,10.38,6ZM230,128A102,102,0,1,1,128,26,102.12,102.12,0,0,1,230,128Zm-12,0a90,90,0,1,0-90,90A90.1,90.1,0,0,0,218,128ZM92,118a10,10,0,1,0-10-10A10,10,0,0,0,92,118Zm72-20a10,10,0,1,0,10,10A10,10,0,0,0,164,98Z","sneaker":"M228,131l-60.73-20.24a26,26,0,0,1-15.51-14L128.51,42.31a14,14,0,0,0-17.57-7.47L35.22,62.37A14.05,14.05,0,0,0,26,75.53V192a14,14,0,0,0,14,14H240a14,14,0,0,0,14-14V167.06A38,38,0,0,0,228,131ZM39.32,73.65,115,46.12a1.81,1.81,0,0,1,.68-.12,2,2,0,0,1,1.79,1.11l8,18.68L102,74.36A6,6,0,0,0,104,86a5.92,5.92,0,0,0,2-.37l24.18-8.79,6.31,14.76L118,98.36A6,6,0,0,0,120,110a6.15,6.15,0,0,0,2-.36l19.26-7a38,38,0,0,0,10.57,13.21L134,122.36A6,6,0,0,0,136,134a6.15,6.15,0,0,0,2.05-.36l28.64-10.42,57.53,19.18A25.94,25.94,0,0,1,241.49,162H38V75.53A2,2,0,0,1,39.32,73.65ZM240,194H40a2,2,0,0,1-2-2V174H242v18A2,2,0,0,1,240,194Z","sparkle":"M196.89,130.94,144.4,111.6,125.06,59.11a13.92,13.92,0,0,0-26.12,0L79.6,111.6,27.11,130.94a13.92,13.92,0,0,0,0,26.12L79.6,176.4l19.34,52.49a13.92,13.92,0,0,0,26.12,0L144.4,176.4l52.49-19.34a13.92,13.92,0,0,0,0-26.12Zm-4.15,14.86-55.08,20.3a6,6,0,0,0-3.56,3.56l-20.3,55.08a1.92,1.92,0,0,1-3.6,0L89.9,169.66a6,6,0,0,0-3.56-3.56L31.26,145.8a1.92,1.92,0,0,1,0-3.6l55.08-20.3a6,6,0,0,0,3.56-3.56l20.3-55.08a1.92,1.92,0,0,1,3.6,0l20.3,55.08a6,6,0,0,0,3.56,3.56l55.08,20.3a1.92,1.92,0,0,1,0,3.6ZM146,40a6,6,0,0,1,6-6h18V16a6,6,0,0,1,12,0V34h18a6,6,0,0,1,0,12H182V64a6,6,0,0,1-12,0V46H152A6,6,0,0,1,146,40ZM246,88a6,6,0,0,1-6,6H230v10a6,6,0,0,1-12,0V94H208a6,6,0,0,1,0-12h10V72a6,6,0,0,1,12,0V82h10A6,6,0,0,1,246,88Z","speaker-low":"M154.64,26.61a6,6,0,0,0-6.32.65L77.94,82H32A14,14,0,0,0,18,96v64a14,14,0,0,0,14,14H77.94l70.38,54.74A6,6,0,0,0,158,224V32A6,6,0,0,0,154.64,26.61ZM30,160V96a2,2,0,0,1,2-2H74v68H32A2,2,0,0,1,30,160Zm116,51.73L86,165.07V90.93l60-46.66ZM206,128a37.94,37.94,0,0,1-9.5,25.14,6,6,0,1,1-9-7.94,26,26,0,0,0,0-34.37,6,6,0,0,1,9-7.93A38,38,0,0,1,206,128Z","star":"M237.28,97.87A14.18,14.18,0,0,0,224.76,88l-60.25-4.87-23.22-56.2a14.37,14.37,0,0,0-26.58,0L91.49,83.11,31.24,88a14.18,14.18,0,0,0-12.52,9.89A14.43,14.43,0,0,0,23,113.32L69,152.93l-14,59.25a14.4,14.4,0,0,0,5.59,15,14.1,14.1,0,0,0,15.91.6L128,196.12l51.58,31.71a14.1,14.1,0,0,0,15.91-.6,14.4,14.4,0,0,0,5.59-15l-14-59.25L233,113.32A14.43,14.43,0,0,0,237.28,97.87Zm-12.14,6.37-48.69,42a6,6,0,0,0-1.92,5.92l14.88,62.79a2.35,2.35,0,0,1-.95,2.57,2.24,2.24,0,0,1-2.6.1L131.14,184a6,6,0,0,0-6.28,0L70.14,217.61a2.24,2.24,0,0,1-2.6-.1,2.35,2.35,0,0,1-1-2.57l14.88-62.79a6,6,0,0,0-1.92-5.92l-48.69-42a2.37,2.37,0,0,1-.73-2.65,2.28,2.28,0,0,1,2.07-1.65l63.92-5.16a6,6,0,0,0,5.06-3.69l24.63-59.6a2.35,2.35,0,0,1,4.38,0l24.63,59.6a6,6,0,0,0,5.06,3.69l63.92,5.16a2.28,2.28,0,0,1,2.07,1.65A2.37,2.37,0,0,1,225.14,104.24Z","sun":"M122,40V16a6,6,0,0,1,12,0V40a6,6,0,0,1-12,0Zm68,88a62,62,0,1,1-62-62A62.07,62.07,0,0,1,190,128Zm-12,0a50,50,0,1,0-50,50A50.06,50.06,0,0,0,178,128ZM59.76,68.24a6,6,0,1,0,8.48-8.48l-16-16a6,6,0,0,0-8.48,8.48Zm0,119.52-16,16a6,6,0,1,0,8.48,8.48l16-16a6,6,0,1,0-8.48-8.48ZM192,70a6,6,0,0,0,4.24-1.76l16-16a6,6,0,0,0-8.48-8.48l-16,16A6,6,0,0,0,192,70Zm4.24,117.76a6,6,0,0,0-8.48,8.48l16,16a6,6,0,0,0,8.48-8.48ZM46,128a6,6,0,0,0-6-6H16a6,6,0,0,0,0,12H40A6,6,0,0,0,46,128Zm82,82a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V216A6,6,0,0,0,128,210Zm112-88H216a6,6,0,0,0,0,12h24a6,6,0,0,0,0-12Z","sun-horizon":"M240,154H197.28a70.91,70.91,0,0,0,.72-10,70,70,0,0,0-140,0,70.91,70.91,0,0,0,.72,10H16a6,6,0,0,0,0,12H240a6,6,0,0,0,0-12ZM70,144a58,58,0,1,1,115.13,10H70.87A58.63,58.63,0,0,1,70,144Zm144,56a6,6,0,0,1-6,6H48a6,6,0,0,1,0-12H208A6,6,0,0,1,214,200ZM74.63,42.69a6,6,0,0,1,10.74-5.37l8,16a6,6,0,0,1-10.74,5.36Zm-56,50.63a6,6,0,0,1,8.05-2.69l16,8a6,6,0,0,1-5.36,10.74l-16-8A6,6,0,0,1,18.63,93.32Zm192,13.36a6,6,0,0,1,2.69-8.05l16-8a6,6,0,1,1,5.36,10.74l-16,8a6,6,0,0,1-8.05-2.69Zm-48-53.36,8-16a6,6,0,0,1,10.74,5.37l-8,16a6,6,0,1,1-10.74-5.36Z","timer":"M128,42a94,94,0,1,0,94,94A94.11,94.11,0,0,0,128,42Zm0,176a82,82,0,1,1,82-82A82.1,82.1,0,0,1,128,218ZM172.24,91.76a6,6,0,0,1,0,8.48l-40,40a6,6,0,1,1-8.48-8.48l40-40A6,6,0,0,1,172.24,91.76ZM98,16a6,6,0,0,1,6-6h48a6,6,0,0,1,0,12H104A6,6,0,0,1,98,16Z","tree":"M196.55,64.09a74,74,0,0,0-137.1,0A69.71,69.71,0,0,0,18,127.8C17.9,164.91,49.13,197,86.19,198A70.32,70.32,0,0,0,122,189.16V232a6,6,0,0,0,12,0V189.16A70.1,70.1,0,0,0,168,198l1.77,0C206.87,197,238.1,164.9,238,127.8A69.71,69.71,0,0,0,196.55,64.09ZM169.5,186A57.88,57.88,0,0,1,134,175V131.71l44.68-22.34a6,6,0,1,0-5.36-10.74L134,118.29V88a6,6,0,0,0-12,0v54.29L82.68,122.63a6,6,0,0,0-5.36,10.74L122,155.71V175a58.09,58.09,0,0,1-35.5,11c-30.71-.77-56.58-27.4-56.5-58.14A57.78,57.78,0,0,1,66.37,74.19a6,6,0,0,0,3.39-3.51,62,62,0,0,1,116.48,0,6,6,0,0,0,3.39,3.51A57.77,57.77,0,0,1,226,127.83C226.08,158.58,200.21,185.2,169.5,186Z","tree-evergreen":"M228.74,188.32,180.27,126H208a6,6,0,0,0,4.76-9.66l-80-104a6,6,0,0,0-9.52,0l-80,104A6,6,0,0,0,48,126H75.73L27.26,188.32A6,6,0,0,0,32,198h90v42a6,6,0,0,0,12,0V198h90a6,6,0,0,0,4.74-9.68ZM44.27,186l48.47-62.32A6,6,0,0,0,88,114H60.19L128,25.84,195.81,114H168a6,6,0,0,0-4.74,9.68L211.73,186Z","users":"M112.6,158.43a58,58,0,1,0-57.2,0A93.83,93.83,0,0,0,5.21,196.72a6,6,0,0,0,10.05,6.56,82,82,0,0,1,137.48,0,6,6,0,0,0,10-6.56A93.83,93.83,0,0,0,112.6,158.43ZM38,108a46,46,0,1,1,46,46A46.06,46.06,0,0,1,38,108Zm211,97a6,6,0,0,1-8.3-1.74A81.8,81.8,0,0,0,172,166a6,6,0,0,1,0-12,46,46,0,1,0-17.08-88.73,6,6,0,1,1-4.46-11.14,58,58,0,0,1,50.14,104.3,93.83,93.83,0,0,1,50.19,38.29A6,6,0,0,1,249,205Z","users-three":"M243.6,148.8a6,6,0,0,1-8.4-1.2A53.58,53.58,0,0,0,192,126a6,6,0,0,1,0-12,26,26,0,1,0-25.18-32.5,6,6,0,0,1-11.62-3,38,38,0,1,1,59.91,39.63A65.69,65.69,0,0,1,244.8,140.4,6,6,0,0,1,243.6,148.8ZM189.19,213a6,6,0,0,1-2.19,8.2,5.9,5.9,0,0,1-3,.81,6,6,0,0,1-5.2-3,59,59,0,0,0-101.62,0,6,6,0,1,1-10.38-6A70.1,70.1,0,0,1,103,182.55a46,46,0,1,1,50.1,0A70.1,70.1,0,0,1,189.19,213ZM128,178a34,34,0,1,0-34-34A34,34,0,0,0,128,178ZM70,120a6,6,0,0,0-6-6A26,26,0,1,1,89.18,81.49a6,6,0,1,0,11.62-3,38,38,0,1,0-59.91,39.63A65.69,65.69,0,0,0,11.2,140.4a6,6,0,1,0,9.6,7.2A53.58,53.58,0,0,1,64,126,6,6,0,0,0,70,120Z","waves":"M220.62,178.58a6,6,0,0,1-.79,8.45c-16.87,14-32,19-45.75,19-18.19,0-34.13-8.66-48.94-16.7-26-14.12-48.44-26.31-81.31,1A6,6,0,0,1,36.17,181c39.13-32.45,68.65-16.41,94.69-2.26s48.44,26.31,81.31-1A6,6,0,0,1,220.62,178.58Zm-8.45-56.81c-32.87,27.27-55.32,15.07-81.31,1S75.3,92.54,36.17,125a6,6,0,0,0,7.66,9.25c32.87-27.27,55.32-15.08,81.31-1,14.81,8,30.75,16.71,48.94,16.71,13.79,0,28.88-5,45.75-19a6,6,0,0,0-7.66-9.24ZM43.83,78.21c32.87-27.27,55.32-15.07,81.31-1C140,85.3,155.89,94,174.08,94c13.79,0,28.88-5,45.75-19a6,6,0,1,0-7.66-9.24c-32.87,27.27-55.32,15.07-81.31,1S75.3,36.52,36.17,69a6,6,0,1,0,7.66,9.24Z","wind":"M182,184a30,30,0,0,1-30,30c-12.9,0-25.36-8.38-29.63-19.92a6,6,0,0,1,11.26-4.16C136.13,196.69,144.2,202,152,202a18,18,0,0,0,0-36H40a6,6,0,0,1,0-12H152A30,30,0,0,1,182,184ZM150,72a30,30,0,0,0-30-30c-12.9,0-25.36,8.38-29.63,19.92a6,6,0,1,0,11.26,4.16C104.13,59.31,112.2,54,120,54a18,18,0,0,1,0,36H24a6,6,0,0,0,0,12h96A30,30,0,0,0,150,72Zm58,2c-12.9,0-25.36,8.38-29.63,19.92a6,6,0,1,0,11.26,4.16C192.13,91.31,200.2,86,208,86a18,18,0,0,1,0,36H32a6,6,0,0,0,0,12H208a30,30,0,0,0,0-60Z"};
+  function ic(n, cls) { return '<svg class="i' + (cls ? " " + cls : "") + '" viewBox="0 0 256 256" aria-hidden="true"><path d="' + (ICONS[n] || "") + '"/></svg>'; }
+  // Icons used by markup (listed so the build includes them):
+  ic("leaf"); ic("sparkle"); ic("check"); ic("arrow-right"); ic("download-simple"); ic("pencil-simple"); ic("play"); ic("sun"); ic("moon");
+
+  // ---------- Sources (shown small) ----------
+  var REFS = {
+    laborde: "Laborde o.fl. (2022). Neuroscience & Biobehavioral Reviews, 138.",
+    balban: "Balban o.fl. (2023). Cell Reports Medicine, 4(1).",
+    lieberman: "Lieberman o.fl. (2007). Psychological Science, 18(5).",
+    ferrari: "Ferrari o.fl. (2019). Mindfulness, 10(8).",
+    neff: "Neff (2003). Self and Identity, 2(2).",
+    khoury: "Khoury o.fl. (2015). Journal of Psychosomatic Research, 78(6).",
+    albulescu: "Albulescu o.fl. (2022). PLOS ONE, 17(8).",
+    cohen: "Cohen & Wills (1985). Psychological Bulletin, 98(2).",
+    coan: "Coan, Schaefer & Davidson (2006). Psychological Science, 17(12).",
+    palumbo: "Palumbo o.fl. (2017). Personality and Social Psychology Review, 21(2).",
+    brach: "Brach (2019). Radical Compassion. Viking.",
+    mccraty: "McCraty o.fl. (2009). Integral Review, 5(2).",
+    lee: "Lee o.fl. (2015). Journal of Environmental Psychology, 42.",
+    manzoni: "Manzoni o.fl. (2008). BMC Psychiatry, 8.",
+    siegel: "Siegel (1999). The Developing Mind. Guilford.",
+    sonnentag: "Sonnentag & Fritz (2007). Journal of Occupational Health Psychology, 12(3).",
+    gollwitzer: "Gollwitzer & Sheeran (2006). Advances in Experimental Social Psychology, 38.",
+    mcewen: "McEwen (1998). New England Journal of Medicine, 338(3).",
+    kim: "Kim, Park & Niu (2017). Journal of Organizational Behavior, 38(1).",
+    bennett: "Bennett, Gabriel & Calderwood (2020). Journal of Occupational Health Psychology, 25(2).",
+    dewitte: "de Witte o.fl. (2022). Health Psychology Review, 16(1).",
+    bryant: "Bryant & Veroff (2007). Savoring. Erlbaum."
+  };
+
+  // ---------- Practices ----------
+  // lv 1 = 10 sek, 2 = 1–2 mín, 3 = 5 mín · dir up/down/any · tags ondun likami ord mildi folk
+  var P = [
+    { id: "utondun", lv: 1, dir: "up", tags: ["ondun"], i: "wind", t: "Ein löng útöndun", s: ["Andaðu hægt út, eins og þú blásir á kerti", "Láttu axlirnar síga um leið"], why: "Löng útöndun virkjar bremsu taugakerfisins.", refs: ["laborde"], guide: "one" },
+    { id: "nefna", lv: 1, dir: "any", tags: ["ord"], i: "chat-centered-dots", t: "Nefndu það", s: ["Segðu í huganum: „Þetta er streita.“", "Eitt eða tvö orð duga"], why: "Að setja orð á tilfinningu dregur úr ógnarviðbragði heilans.", refs: ["lieberman"] },
+    { id: "faetur", lv: 1, dir: "any", tags: ["likami"], i: "footprints", t: "Fætur í gólfið", s: ["Finndu iljarnar og þrýstu þeim niður", "Taktu eftir þyngd líkamans"], why: "Færir athyglina úr hugsunum yfir í líkamann.", refs: [] },
+    { id: "hond", lv: 1, dir: "any", tags: ["mildi"], i: "heart", t: "Hönd á hjartað", s: ["Leggðu hlýja hönd á bringuna", "Einn rólegur andardráttur"], why: "Hlý snerting er hluti af sjálfsmildi.", refs: ["ferrari"] },
+    { id: "augu", lv: 1, dir: "any", tags: ["folk"], i: "smiley", t: "Vinalegt andlit", s: ["Leitaðu augnsambands við einhvern sem þér líður vel með", "Bros dugar"], why: "Taugakerfi fólks samstillast í samskiptum.", refs: ["palumbo"] },
+
+    { id: "andvarp", lv: 2, dir: "up", tags: ["ondun"], i: "waves", t: "Tvöfalt andvarp", s: ["Inn um nefið, og smá meira inn", "Langt og hægt út um munninn", "Endurtaktu 3–5 sinnum"], why: "Bætti líðan og róaði öndun í hvíld.", refs: ["balban"], guide: "sigh" },
+    { id: "b46", lv: 2, dir: "any", tags: ["ondun"], i: "wind", t: "4 inn – 6 út", s: ["Andaðu inn á fjórum", "Andaðu út á sex", "Endurtaktu 6–10 sinnum"], why: "Hæg öndun eykur hjartsláttarbreytileika (HRV).", refs: ["laborde"], guide: "b46" },
+    { id: "stop", lv: 2, dir: "any", tags: ["ord"], i: "hand-palm", t: "STOP", s: ["Stoppaðu og taktu einn andardrátt", "Taktu eftir: líkami, hugsanir, tilfinningar", "Veldu næsta skref, meðvitað"], why: "Örstutt núvitund; núvitund dregur úr streitu.", refs: ["khoury"] },
+    { id: "teygja", lv: 2, dir: "down", tags: ["likami"], i: "person-arms-spread", t: "Hristu þig í gang", s: ["Stattu upp og teygðu þig", "Rúllaðu öxlunum fimm sinnum", "Nokkur skref, helst út"], why: "Örpásur með hreyfingu auka orku og draga úr þreytu.", refs: ["albulescu"] },
+    { id: "jard", lv: 2, dir: "down", tags: ["likami"], i: "tree-evergreen", t: "3 – 2 – 1", s: ["3 hlutir sem þú sérð", "2 hljóð sem þú heyrir", "1 sem þú finnur snerta þig"], why: "Jarðtenging færir þig aftur inn í líkamann og rýmið.", refs: [] },
+    { id: "slaka", lv: 2, dir: "up", tags: ["likami"], i: "barbell", t: "Spenna og sleppa", s: ["Lyftu öxlum að eyrum í 5 sekúndur", "Slepptu og finndu muninn", "Sama með hnefa og kjálka"], why: "Vöðvaslökun dregur úr spennu og kvíða.", refs: ["manzoni"] },
+    { id: "mildi", lv: 2, dir: "any", tags: ["mildi"], i: "hand-heart", t: "Sjálfsmildi-pása", s: ["„Þetta er erfitt augnablik.“", "„Ég er ekki ein/n um þetta.“", "„Megi ég sýna mér mildi.“"], why: "Sjálfsmildi dregur úr streitu og kulnun.", refs: ["neff", "ferrari"] },
+    { id: "hjalp", lv: 2, dir: "any", tags: ["folk"], i: "handshake", t: "Biddu um tvær mínútur", s: ["„Geturðu tekið við í tvær mínútur?“", "Stígðu frá, andaðu, komdu aftur"], why: "Stuðningur annarra dempar áhrif streitu.", refs: ["cohen"] },
+
+    { id: "rain", lv: 3, dir: "any", tags: ["ord", "mildi"], i: "flower", t: "RAIN", s: ["Taktu eftir: hvað er í gangi í mér?", "Leyfðu því að vera, í smástund", "Kannaðu með mildi: hvað þarf ég?", "Nærðu: hvað segði ég við góðan vin?"], why: "Sameinar núvitund og sjálfsmildi.", refs: ["brach", "ferrari"] },
+    { id: "hjarta", lv: 3, dir: "any", tags: ["ondun", "mildi"], i: "heart", t: "Hjartaöndun", s: ["Hönd á bringu, aðeins hægari öndun", "Kallaðu fram hlýja tilfinningu: manneskju, minningu, þakklæti"], why: "Hæg öndun með hlýrri tilfinningu.", refs: ["mccraty", "laborde"], guide: "hjarta" },
+    { id: "ganga", lv: 3, dir: "down", tags: ["likami"], i: "tree", t: "Stuttur göngutúr", s: ["Fimm mínútur úti", "Augun á fjarlægð, himin eða gróður", "Rösklega síðustu mínútuna"], why: "Hreyfing og náttúra bæta orku og athygli.", refs: ["albulescu", "lee"] },
+    { id: "langondun", lv: 3, dir: "up", tags: ["ondun"], i: "timer", t: "Fimm mínútna öndun", s: ["Sestu, hönd á magann", "4 inn – 6 út í fimm mínútur", "Taktu eftir hvað breytist"], why: "Fimm mínútur á dag af hægri öndun bæta líðan.", refs: ["balban", "laborde"], guide: "long" },
+    { id: "spjall", lv: 3, dir: "any", tags: ["folk"], i: "coffee", t: "Hlé með einhverjum", s: ["Kaffi eða ganga með einhverjum sem þér líður vel með", "Talaðu um eitthvað annað en vinnuna"], why: "Við fáum ró að láni hvert frá öðru.", refs: ["coan", "cohen"] }
+  ];
+  function byId(id) { for (var k = 0; k < P.length; k++) if (P[k].id === id) return P[k]; return null; }
+
+  var SIGNALS = [
+    { t: "Axlir og kjálki spennast", i: "person" }, { t: "Hjartað slær hraðar", i: "heartbeat" },
+    { t: "Röddin hækkar eða hvessist", i: "speaker-low" }, { t: "Hugsanirnar fara á fullt", i: "brain" },
+    { t: "Ég verð pirruð/aður", i: "lightning" }, { t: "Orkan klárast", i: "battery-low" },
+    { t: "Ég dreg mig inn í skel", i: "cloud" }, { t: "Ég sef illa", i: "moon" }
+  ];
+  var DIRS = [
+    { v: "up", i: "arrow-fat-up", t: "Upp á við", d: "Spenna, pirringur, hraði, hugsanir á fullu" },
+    { v: "down", i: "arrow-fat-down", t: "Niður á við", d: "Þreyta, dofi, tómleiki, orkuleysi" },
+    { v: "any", i: "arrows-down-up", t: "Hvort tveggja", d: "Fer eftir dögum" }
+  ];
+  var GOALS = { up: "Markmiðið þitt: að setja fótinn á bremsuna.", down: "Markmiðið þitt: að kveikja varlega á þér aftur.", any: "Markmiðið þitt: að rata aftur inn í gluggann, hvort sem þú ferð upp eða niður." };
+  var PREFS = [
+    { v: "ondun", i: "wind", t: "Öndun", d: "Að hægja á með andardrættinum" },
+    { v: "likami", i: "sneaker", t: "Líkami og hreyfing", d: "Að hreyfa sig og finna fyrir líkamanum" },
+    { v: "ord", i: "chat-centered-dots", t: "Orð og athygli", d: "Að staldra við og setja orð á hlutina" },
+    { v: "mildi", i: "hand-heart", t: "Mildi", d: "Að tala hlýlega við sjálfa/n mig" },
+    { v: "folk", i: "users-three", t: "Annað fólk", d: "Að tengjast einhverjum sem mér líður vel með" }
+  ];
+  var SENTENCES = ["Þetta líður hjá.", "Eitt andartak í einu.", "Ég má staldra við.", "Ég geri mitt besta, og það er nóg.", "Ég þarf ekki að gera þetta ein/n."];
+  var PAUSES = [
+    { id: "p46", i: "wind", t: "4 inn – 6 út", tm: "1–2 mín", refs: ["laborde"] },
+    { id: "pteygja", i: "person-arms-spread", t: "Teygja og rúlla öxlum", tm: "2 mín", refs: ["albulescu"] },
+    { id: "put", i: "tree", t: "Út í ferskt loft", tm: "3–5 mín", refs: ["lee"] },
+    { id: "pglugg", i: "eye", t: "Augun út um gluggann", tm: "1 mín", refs: ["lee"] },
+    { id: "pganga", i: "footprints", t: "Ganga einn hring", tm: "2–5 mín", refs: ["albulescu"] },
+    { id: "pspjall", i: "chat-circle", t: "Spjall um annað en vinnuna", tm: "3–5 mín", refs: ["kim"] },
+    { id: "ptonl", i: "music-notes", t: "Eitt uppáhaldslag", tm: "3 mín", refs: ["dewitte"] },
+    { id: "pkaffi", i: "coffee", t: "Kaffi eða snarl, án síma", tm: "5 mín", refs: ["kim"] },
+    { id: "pnjota", i: "sun", t: "Staldra við eitthvað gott", tm: "30 sek", refs: ["bryant"] },
+    { id: "pmildi", i: "hand-heart", t: "Sjálfsmildi-pása", tm: "1 mín", refs: ["ferrari"] },
+    { id: "pslaka", i: "barbell", t: "Spenna og sleppa", tm: "1 mín", refs: ["manzoni"] },
+    { id: "pvatn", i: "drop", t: "Vatnsglas, hægt og rólega", tm: "1 mín", refs: [] }
+  ];
+  function pauseById(id) { for (var k = 0; k < PAUSES.length; k++) if (PAUSES[k].id === id) return PAUSES[k]; return PAUSES[0]; }
+  var MOMENTS = [
+    { t: "Áður en vinnudagurinn byrjar", i: "sun-horizon", slot: "morgun" },
+    { t: "Í kaffinu eða hádeginu", i: "coffee", slot: "dagur" },
+    { t: "Á milli verkefna", i: "arrows-clockwise", slot: "dagur" },
+    { t: "Þegar ég tek eftir merkjunum mínum", i: "eye", slot: "dagur" },
+    { t: "Fyrir erfitt samtal eða fund", i: "chat-centered-dots", slot: "dagur" },
+    { t: "Eftir erfitt augnablik", i: "cloud", slot: "dagur" },
+    { t: "Á leiðinni heim", i: "house", slot: "lok" },
+    { t: "Þegar ég kem heim", i: "door-open", slot: "lok" },
+    { t: "Áður en ég fer að sofa", i: "moon-stars", slot: "kvold" }
+  ];
+  var CLOSINGS = [
+    { t: "Ganga hluta leiðarinnar heim", i: "footprints" }, { t: "Segja við mig: „Deginum er lokið“", i: "quotes" },
+    { t: "Tónlist á leiðinni heim", i: "music-notes" }, { t: "Skipta um föt þegar ég kem heim", i: "door-open" },
+    { t: "Þrjár langar útandanir áður en ég fer inn", i: "wind" }
+  ];
+  var NOURISH = [
+    { g: "Að aftengjast", i: "phone-slash", s: ["Slökkva á vinnuspjallinu eftir vinnu", "Tala um annað en vinnuna í kvöldmatnum"] },
+    { g: "Slökun", i: "armchair", s: ["Sund eða heitur pottur", "Lesa í 20 mínútur", "Rólegur göngutúr"] },
+    { g: "Eitthvað sem ég næ tökum á", i: "palette", s: ["Handverk, tónlist eða matreiðsla", "Íþrótt, dans eða kór", "Ný gönguleið"] },
+    { g: "Minn eigin tími", i: "star", s: ["Hálftími á dag sem er bara minn", "Segja nei við einu aukaverki"] },
+    { g: "Svefn", i: "bed", s: ["Sami háttatími fimm kvöld í viku", "Skjár burt 30 mínútum fyrir svefn"] },
+    { g: "Hreyfing", i: "sneaker", s: ["30 mínútna ganga þrisvar í viku", "Jóga eða sund einu sinni í viku"] },
+    { g: "Tengsl", i: "users", s: ["Hitta eða hringja í vin í vikunni", "Gæðastund með fólkinu mínu"] }
+  ];
+  function nourishGroup(item) { for (var k = 0; k < NOURISH.length; k++) if (NOURISH[k].s.indexOf(item) >= 0) return NOURISH[k]; return NOURISH[0]; }
+
+  // ---------- state ----------
+  var A = { name: "", signals: [], dir: "", prefs: [], sentence: "", sentenceOwn: "", pauses: [], moments: [], closing: "", closingOwn: "", nourish: [], first: "", buffer: "" };
+  var step = 0, demo = false;
+  try { var raw = localStorage.getItem(KEY); if (raw) { var o = JSON.parse(raw); if (o && o.A) A = Object.assign(A, o.A); } } catch (e) {}
+  if (!A.pauses) A.pauses = [];
+  function save() { if (demo) return; try { localStorage.setItem(KEY, JSON.stringify({ A: A })); } catch (e) {} }
+  if (location.hash === "#daemi") {
+    demo = true; step = 11;
+    A = { name: "Dæmi", signals: ["Axlir og kjálki spennast", "Hugsanirnar fara á fullt", "Ég verð pirruð/aður"], dir: "up", prefs: ["ondun", "mildi"], sentence: "Eitt andartak í einu.", sentenceOwn: "", pauses: ["put", "p46", "pspjall", "ptonl", "pnjota"], moments: ["Áður en vinnudagurinn byrjar", "Í kaffinu eða hádeginu", "Á leiðinni heim"], closing: "Tónlist á leiðinni heim", closingOwn: "", nourish: ["Sund eða heitur pottur", "Sami háttatími fimm kvöld í viku", "Hitta eða hringja í vin í vikunni", "Handverk, tónlist eða matreiðsla"], first: "Fara í sund á fimmtudaginn", buffer: "Vinkona mín" };
+  }
+
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function toggle(arr, v, max) { var k = arr.indexOf(v); if (k >= 0) arr.splice(k, 1); else if (!max || arr.length < max) arr.push(v); }
+  function sentence() { return (A.sentenceOwn || "").trim() || A.sentence; }
+  function closing() { return (A.closingOwn || "").trim() || A.closing; }
+
+  // ---------- recommendation ----------
+  function score(p) { var s = 0; p.tags.forEach(function (t) { var k = A.prefs.indexOf(t); if (k >= 0) s += 10 - 2 * k; }); if (A.dir && p.dir === A.dir) s += 3; return s; }
+  function plan() {
+    var used = [], out = [], dir = A.dir || "any";
+    [1, 2, 3].forEach(function (lv) {
+      var pool = P.filter(function (p) { return p.lv === lv && used.indexOf(p.id) < 0 && (dir === "any" || p.dir === "any" || p.dir === dir); });
+      pool.sort(function (a, b) { return score(b) - score(a); });
+      if (pool[0]) { used.push(pool[0].id); out.push(pool[0]); }
+    });
+    return out;
+  }
+
+  // ---------- screens ----------
+  var Q = [
+    { key: "intro" },
+    { key: "signals", part: "Í augnablikinu", q: "Hvernig finnurðu að álagið er farið að hafa áhrif á þig?", hint: "Veldu allt sem á við. Þetta verða merkin þín.", ok: function () { return A.signals.length > 0; } },
+    { key: "dir", part: "Í augnablikinu", q: "Hvert fer kerfið þitt oftast undir álagi?", hint: "Við höfum öll glugga þar sem við erum í jafnvægi. Undir álagi förum við upp úr honum eða niður.", ok: function () { return !!A.dir; } },
+    { key: "prefs", part: "Í augnablikinu", q: "Hvað höfðar mest til þín?", hint: "Veldu eitt til þrjú. Það sem þú velur fyrst vegur þyngst.", ok: function () { return A.prefs.length > 0; } },
+    { key: "pause", part: "Smá pása", q: "Prófaðu, áður en við höldum áfram", hint: "Þrjár umferðir: inn á fjórum, út á sex. Eða slepptu þessu, það er líka í lagi.", ok: function () { return true; } },
+    { key: "sentence", part: "Í augnablikinu", q: "Hvaða setningu viltu eiga þegar á reynir?", hint: "Stutt og mild setning sem þú segir við sjálfa/n þig.", ok: function () { return !!sentence(); } },
+    { key: "pauses", part: "Endurheimtin mín", q: "Hvaða örpásur viltu hafa á matseðlinum þínum?", hint: "Veldu tvær til fimm. Stutt hlé yfir daginn auka orku og draga úr þreytu.", ok: function () { return A.pauses.length > 0; } },
+    { key: "moments", part: "Endurheimtin mín", q: "Hvenær í deginum viltu taka örpásu?", hint: "Veldu eitt til þrjú föst augnablik. Þegar pásan tengist föstu augnabliki verður hún að venju.", ok: function () { return A.moments.length > 0; } },
+    { key: "closing", part: "Endurheimtin mín", q: "Hvernig viltu loka vinnudeginum?", hint: "Lítil athöfn sem segir taugakerfinu að deginum sé lokið.", ok: function () { return !!closing(); } },
+    { key: "nourish", part: "Endurheimtin mín", q: "Hvað nærir þig utan vinnu?", hint: "Veldu tvö til fimm atriði sem þú vilt gefa pláss í vikunni.", ok: function () { return A.nourish.length > 0; } },
+    { key: "last", part: "Endurheimtin mín", q: "Að lokum, tvö persónuleg atriði", ok: function () { return true; } },
+    { key: "result" }
+  ];
+  var NQ = Q.length - 2;
+
+  function card(o, pressed, extra) {
+    return '<button class="card' + (extra || "") + '" aria-pressed="' + pressed + '" data-v="' + esc(o.v || o.t) + '"><span class="tick">' + ic("check") + '</span><span class="ico">' + ic(o.i) + "</span><span><b>" + esc(o.t) + "</b>" + (o.d ? "<small>" + esc(o.d) + "</small>" : "") + "</span></button>";
+  }
+  function body(key) {
+    if (key === "signals") return '<div class="grid" data-multi="signals">' + SIGNALS.map(function (o) { return card(o, A.signals.indexOf(o.t) >= 0); }).join("") + "</div>";
+    if (key === "dir") return wot() + '<div class="grid one" data-single="dir">' + DIRS.map(function (o) { return card(o, A.dir === o.v, " row"); }).join("") + '</div><div class="goal" id="goal"' + (A.dir ? "" : " hidden") + ">" + esc(GOALS[A.dir] || "") + "</div>";
+    if (key === "prefs") return '<div class="grid one" data-rank="prefs">' + PREFS.map(function (o) { var k = A.prefs.indexOf(o.v); return card(o, k >= 0, " row").replace(ic("check"), k >= 0 ? String(k + 1) : ""); }).join("") + "</div>";
+    if (key === "pause") return breathBox("pause");
+    if (key === "sentence") return '<div class="grid one" data-single="sentence">' + SENTENCES.map(function (s) { return card({ t: s, i: "quotes" }, A.sentence === s && !A.sentenceOwn, " row"); }).join("") + '</div><label class="f" for="sentenceOwn">Eða þín eigin setning<input type="text" id="sentenceOwn" value="' + esc(A.sentenceOwn) + '" placeholder="T.d. Ég hef komist í gegnum erfiðari daga"></label>';
+    if (key === "pauses") return '<div class="grid" data-multi="pauses" data-max="5">' + PAUSES.map(function (o) { return card({ v: o.id, i: o.i, t: o.t, d: o.tm }, A.pauses.indexOf(o.id) >= 0); }).join("") + '</div><p class="count" id="count">' + A.pauses.length + ' af 5 valin</p><p class="fine">Safngreining sýnir að örpásur, 10 mínútur eða styttri, auka orku og draga úr þreytu. Lengri pásur virðast gera meira gagn en mjög stuttar, og það skiptir máli hvað maður gerir í pásunni.<sup class="r">Albulescu 2022 · Bennett 2020 · Kim 2017</sup></p>';
+    if (key === "moments") return '<div class="grid" data-multi="moments" data-max="3">' + MOMENTS.map(function (o) { return card(o, A.moments.indexOf(o.t) >= 0); }).join("") + '</div><p class="count" id="count">' + A.moments.length + ' af 3 valin</p><p class="fine">„Þegar X, þá Y“-áætlanir hjálpa ætlun að verða að venju.<sup class="r">Gollwitzer 2006</sup></p>';
+    if (key === "closing") return '<div class="grid one" data-single="closing">' + CLOSINGS.map(function (o) { return card(o, A.closing === o.t && !A.closingOwn, " row"); }).join("") + '</div><label class="f" for="closingOwn">Eða þín eigin<input type="text" id="closingOwn" value="' + esc(A.closingOwn) + '" placeholder="T.d. kveikja á kerti þegar ég kem heim"></label>';
+    if (key === "nourish") return NOURISH.map(function (g) { return '<div class="group-h">' + ic(g.i) + esc(g.g) + '</div><div class="chips" data-multi="nourish" data-max="5">' + g.s.map(function (s) { return '<button class="chip" aria-pressed="' + (A.nourish.indexOf(s) >= 0) + '" data-v="' + esc(s) + '">' + esc(s) + "</button>"; }).join("") + "</div>"; }).join("") + '<p class="count" id="count">' + A.nourish.length + " af 5 valin</p>";
+    if (key === "last") return '<label class="f" for="buffer">Hver er stuðpúðinn þinn?<span class="muted">Manneskja sem þér líður vel með og getur leitað til. Ró smitast.</span><input type="text" id="buffer" value="' + esc(A.buffer) + '" placeholder="T.d. vinkona mín, Jón, systir mín"></label>' +
+      '<label class="f" for="first">Fyrsta litla skrefið mitt í vikunni<span class="muted">Svo lítið að það sé næstum of auðvelt.</span><input type="text" id="first" value="' + esc(A.first) + '" placeholder="T.d. ganga heim á þriðjudaginn"></label>' +
+      '<label class="f" for="name">Nafnið þitt á blöðin<span class="muted">Valfrjálst.</span><input type="text" id="name" value="' + esc(A.name) + '" placeholder="Fornafn"></label>';
+    return "";
+  }
+  function wot() {
+    var up = A.dir === "up" || A.dir === "any", dn = A.dir === "down" || A.dir === "any";
+    return '<div class="wot"><svg viewBox="0 0 320 96" role="img" aria-label="Þolglugginn"><rect class="band" x="0" y="30" width="320" height="36" rx="6"/><line class="edge" x1="0" y1="30" x2="320" y2="30"/><line class="edge" x1="0" y1="66" x2="320" y2="66"/>' +
+      '<text x="8" y="14">OF MIKIÐ</text><text x="8" y="52">GLUGGINN</text><text x="8" y="90">OF LÍTIÐ</text>' +
+      '<path class="ln' + (up ? " on" : "") + '" d="M90 48 C 120 46, 135 52, 150 44 S 185 6, 205 10 S 235 40, 250 46"/>' +
+      '<path class="ln' + (dn ? " on" : "") + '" d="M150 50 C 165 54, 175 60, 190 72 S 220 92, 240 86 S 262 60, 300 50"/></svg>' +
+      '<p class="fine">Þolglugginn: innan hans getum við hugsað skýrt og brugðist við af yfirvegun.<sup class="r">Siegel</sup></p></div>';
+  }
+
+  // ---------- render ----------
+  var app = $("#app");
+  function leaves() {
+    var h = '<span class="leaves" aria-label="Skref ' + step + " af " + NQ + '">';
+    for (var k = 1; k <= NQ; k++) h += '<span class="' + (k < step ? "on" : k === step ? "now" : "") + '">' + ic("leaf") + "</span>";
+    return h + "</span>";
+  }
+  function render() {
+    stopBreath();
+    var S = Q[step], h;
+    if (S.key === "intro") h = intro();
+    else if (S.key === "result") h = result();
+    else {
+      h = '<div class="top"><span class="part">' + esc(S.part) + "</span>" + leaves() + "</div>";
+      h += "<h2>" + esc(S.q) + "</h2>" + (S.hint ? '<p class="hint">' + esc(S.hint) + "</p>" : "");
+      h += '<div id="q" style="display:flex;flex-direction:column;gap:12px">' + body(S.key) + "</div>";
+      h += '<div class="nav"><button class="btn ghost" id="back">Til baka</button><button class="btn" id="next"' + (S.ok() ? "" : " disabled") + ">" + (step === NQ ? "Sjá blöðin mín" : S.key === "pause" ? "Áfram" : "Áfram") + " " + ic("arrow-right") + "</button></div>";
+    }
+    app.innerHTML = '<div class="screen">' + h + "</div>";
+    bind(); window.scrollTo(0, 0);
+  }
+  function refreshNext() { var n = $("#next"); if (n) n.disabled = !Q[step].ok(); }
+  function go(d) { save(); step = Math.max(0, Math.min(Q.length - 1, step + d)); render(); }
+
+  function bind() {
+    var b;
+    if ((b = $("#go"))) b.addEventListener("click", function () { step = 1; render(); });
+    if ((b = $("#back"))) b.addEventListener("click", function () { go(-1); });
+    if ((b = $("#next"))) b.addEventListener("click", function () { if (Q[step].ok()) go(1); });
+    // multi-select (cards or chips)
+    $$("[data-multi]", app).forEach(function (wrapEl) {
+      var key = wrapEl.dataset.multi, max = +(wrapEl.dataset.max || 0);
+      $$("button", wrapEl).forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          toggle(A[key], btn.dataset.v, max);
+          $$('[data-multi="' + key + '"] button', app).forEach(function (x) { x.setAttribute("aria-pressed", A[key].indexOf(x.dataset.v) >= 0); });
+          var c = $("#count"); if (c) c.textContent = A[key].length + " af " + max + " valin";
+          save(); refreshNext();
+        });
+      });
+    });
+    $$("[data-single]", app).forEach(function (wrapEl) {
+      var key = wrapEl.dataset.single;
+      $$("button", wrapEl).forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          A[key] = btn.dataset.v;
+          if (key === "sentence") { A.sentenceOwn = ""; var so = $("#sentenceOwn"); if (so) so.value = ""; }
+          if (key === "closing") { A.closingOwn = ""; var co = $("#closingOwn"); if (co) co.value = ""; }
+          $$("button", wrapEl).forEach(function (x) { x.setAttribute("aria-pressed", x === btn); });
+          if (key === "dir") { var g = $("#goal"); g.hidden = false; g.textContent = GOALS[A.dir]; var w = $(".wot", app); if (w) w.outerHTML = wot(); }
+          save(); refreshNext();
+        });
+      });
+    });
+    $$("[data-rank] button", app).forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        toggle(A.prefs, btn.dataset.v, 3);
+        $$("[data-rank] button", app).forEach(function (x) { var k = A.prefs.indexOf(x.dataset.v); x.setAttribute("aria-pressed", k >= 0); $(".tick", x).textContent = k >= 0 ? String(k + 1) : ""; });
+        save(); refreshNext();
+      });
+    });
+    ["sentenceOwn", "closingOwn", "buffer", "first", "name"].forEach(function (id) {
+      var el = $("#" + id); if (!el) return;
+      el.addEventListener("input", function () {
+        A[id] = el.value;
+        if (id === "sentenceOwn" || id === "closingOwn") { var key = id === "sentenceOwn" ? "sentence" : "closing"; $$('[data-single="' + key + '"] button', app).forEach(function (x) { x.setAttribute("aria-pressed", !el.value.trim() && x.dataset.v === A[key]); }); }
+        save(); refreshNext();
+      });
+    });
+    if ((b = $("#bp-go"))) b.addEventListener("click", function () { startBreath(GUIDES.pause, "#bp-"); });
+    if ((b = $("#bp-stop"))) b.addEventListener("click", stopBreath);
+    if ((b = $("#dl"))) b.addEventListener("click", downloadPdf);
+    if ((b = $("#edit"))) b.addEventListener("click", function () { if (demo) { demo = false; location.hash = ""; try { var r2 = localStorage.getItem(KEY); A = r2 ? Object.assign(A, JSON.parse(r2).A) : A; } catch (e) {} } step = 1; render(); });
+    if ((b = $("#restart"))) b.addEventListener("click", function () { if (demo) { location.hash = ""; demo = false; } step = 0; render(); });
+    $$("[data-try]", app).forEach(function (x) { x.addEventListener("click", function () { openPractice(x.dataset.try); }); });
+    if (Q[step].key === "result") fitPreviews();
+  }
+
+  function intro() {
+    var ridge = '<svg class="ridge" viewBox="0 0 300 120"><path d="M0 110 L40 70 L62 84 L104 30 L130 58 L150 44 L190 90 L214 64 L240 80 L270 40 L300 70"/><path d="M0 120 L30 96 L70 104 L110 76 L150 98 L200 84 L240 104 L300 90"/></svg>';
+    var star = '<svg class="starm" viewBox="0 0 34 34"><line x1="17" y1="2" x2="17" y2="32"/><line x1="2" y1="17" x2="32" y2="17"/><line x1="11" y1="11" x2="23" y2="23"/><line x1="23" y1="11" x2="11" y2="23"/></svg>';
+    return '<div class="hero">' + ridge + star + '<p class="eyebrow" style="color:var(--sage)">Ró og endurheimt</p><h1>Mitt jafnvægi</h1><p>Finndu þínar leiðir til að ná ró og safna orku.</p></div>' +
+      '<p>Níu stuttar spurningar og ein öndunarpása, um fimm mínútur. Í lokin færðu tvö blöð til að prenta eða vista:</p>' +
+      '<div class="what"><div><span class="ico">' + ic("lightning") + '</span><b>Í augnablikinu</b><span>Þitt eigið flæðirit fyrir stundirnar þegar álagið tekur yfir.</span></div><div><span class="ico">' + ic("battery-charging") + '</span><b>Endurheimtin mín</b><span>Dagurinn þinn og vikan, þar sem orkan fær að safnast aftur.</span></div></div>' +
+      '<p class="fine">Svörin fara hvergi. Þau vistast aðeins í þessu tæki. Allar aðferðirnar byggja á rannsóknum og heimildirnar fylgja með í smáa letrinu.</p>' +
+      '<div class="nav"><span class="sign">Sigrún Þóra</span><button class="btn" id="go">Byrja ' + ic("arrow-right") + "</button></div>";
+  }
+
+  // ---------- breathing ----------
+  var GUIDES = {
+    pause: { phases: [["Inn", 4, 1], ["Út", 6, 0.5]], rounds: 3 },
+    one: { phases: [["Inn", 3, 0.85], ["Langt út", 6, 0.5]], rounds: 3 },
+    sigh: { phases: [["Inn", 2, 0.85], ["Smá meira inn", 1, 1], ["Langt út", 6, 0.5]], rounds: 5 },
+    b46: { phases: [["Inn", 4, 1], ["Út", 6, 0.5]], rounds: 8 },
+    long: { phases: [["Inn", 4, 1], ["Út", 6, 0.5]], rounds: 30 },
+    hjarta: { phases: [["Inn", 5, 1], ["Út", 5, 0.55]], rounds: 10 }
+  };
+  function breathBox(prefix) {
+    var p = prefix === "pause" ? "bp-" : "bs-";
+    return '<div class="breath"><div class="orb-box"><div class="orb" id="' + p + 'orb"></div><div class="orb-txt" id="' + p + 'txt"><span>Tilbúin/n?<small>Ýttu á Byrja</small></span></div></div><div class="actions" style="justify-content:center"><button class="btn" id="' + p + 'go">' + ic("play") + ' Byrja</button><button class="btn ghost" id="' + p + 'stop" hidden>Stoppa</button></div></div>';
+  }
+  var bTimer = null, bTick = null, bPrefix = null;
+  function startBreath(g, prefix) {
+    stopBreath(); bPrefix = prefix;
+    var orb = $(prefix + "orb"), txt = $(prefix + "txt"), round = 1, ph = 0;
+    $(prefix + "go").hidden = true; $(prefix + "stop").hidden = false;
+    try { if (navigator.wakeLock) navigator.wakeLock.request("screen").catch(function () {}); } catch (e) {}
+    function show(label, left) { txt.innerHTML = "<span>" + esc(label) + "<small>" + left + " · umferð " + round + " af " + g.rounds + "</small></span>"; }
+    function stepB() {
+      if (round > g.rounds) {
+        orb.style.transitionDuration = "1.2s"; orb.style.transform = "scale(.5)";
+        txt.innerHTML = "<span>Vel gert<small>Hvernig líður þér núna?</small></span>";
+        var gb = $(prefix + "go"); gb.hidden = false; gb.innerHTML = ic("play") + " Aftur"; $(prefix + "stop").hidden = true; bTimer = null; return;
+      }
+      var phase = g.phases[ph], left = phase[1];
+      orb.style.transitionDuration = phase[1] + "s"; orb.style.transform = "scale(" + phase[2] + ")";
+      show(phase[0], left);
+      bTick = setInterval(function () { left--; if (left > 0) show(phase[0], left); else clearInterval(bTick); }, 1000);
+      bTimer = setTimeout(function () { clearInterval(bTick); ph++; if (ph >= g.phases.length) { ph = 0; round++; } stepB(); }, phase[1] * 1000);
+    }
+    stepB();
+  }
+  function stopBreath() {
+    var was = !!bTimer;
+    if (bTimer) { clearTimeout(bTimer); bTimer = null; }
+    if (bTick) { clearInterval(bTick); bTick = null; }
+    if (!bPrefix) return;
+    var orb = $(bPrefix + "orb"), gb = $(bPrefix + "go"), st = $(bPrefix + "stop"), txt = $(bPrefix + "txt");
+    if (orb) { orb.style.transitionDuration = ".8s"; orb.style.transform = "scale(.5)"; }
+    if (gb) gb.hidden = false; if (st) st.hidden = true;
+    if (was && txt) txt.innerHTML = "<span>Stoppað<small>Ýttu á Byrja til að halda áfram</small></span>";
+  }
+
+  // ---------- practice modal ----------
+  var bg = $("#sheet-bg"), sheetEl = $("#sheet"), lastFocus = null;
+  function openPractice(id) {
+    var p = byId(id); lastFocus = document.activeElement;
+    var h = '<div class="sheet-head"><div><p class="eyebrow">' + ["", "10 sekúndur", "1–2 mínútur", "5 mínútur"][p.lv] + '</p><h2 id="sh-title">' + esc(p.t) + '</h2></div><button class="x" id="sh-x" aria-label="Loka">✕</button></div>';
+    if (p.guide) h += breathBox("sheet");
+    h += '<ol class="steps">' + p.s.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol>";
+    h += '<p class="fine">' + esc(p.why) + (p.refs.length ? " " + p.refs.map(function (r) { return REFS[r].split(".")[0]; }).join("; ") + "." : " Klínísk aðferð, lítið rannsökuð ein og sér.") + "</p>";
+    sheetEl.innerHTML = h; bg.hidden = false; document.body.style.overflow = "hidden";
+    $("#sh-x").focus(); $("#sh-x").addEventListener("click", closeSheet);
+    if (p.guide) { $("#bs-go").addEventListener("click", function () { startBreath(GUIDES[p.guide], "#bs-"); }); $("#bs-stop").addEventListener("click", stopBreath); }
+  }
+  function closeSheet() { stopBreath(); bPrefix = null; bg.hidden = true; document.body.style.overflow = ""; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  bg.addEventListener("click", function (e) { if (e.target === bg) closeSheet(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !bg.hidden) closeSheet(); });
+
+  // ---------- sheets ----------
+  var STAR = '<svg class="star" viewBox="0 0 46 46"><g stroke="#C9A24B" stroke-width="1.6" stroke-linecap="round"><line x1="23" y1="3" x2="23" y2="43"/><line x1="3" y1="23" x2="43" y2="23"/><line x1="15" y1="15" x2="31" y2="31"/><line x1="31" y1="15" x2="15" y2="31"/></g><circle cx="23" cy="23" r="3" fill="#C9A24B"/></svg>';
+  var RIDGE = '<svg class="ridge" viewBox="0 0 420 120" preserveAspectRatio="xMaxYMax meet"><path d="M0 118 L50 80 L78 96 L130 34 L162 66 L188 50 L236 100 L266 72 L300 88 L338 42 L372 70 L420 54" /><path d="M0 120 L40 104 L92 112 L140 86 L190 106 L250 92 L300 110 L360 96 L420 104" /></svg>';
+  function myWindow() {
+    var d = A.dir || "any", up = d === "up" || d === "any", dn = d === "down" || d === "any";
+    return '<div class="mywin"><svg viewBox="0 0 170 104"><rect x="0" y="34" width="170" height="36" rx="6" fill="#FFFFFF"/><line x1="0" y1="34" x2="170" y2="34" stroke="#9CC5AC" stroke-dasharray="3 3"/><line x1="0" y1="70" x2="170" y2="70" stroke="#9CC5AC" stroke-dasharray="3 3"/>' +
+      '<path d="M70 52 C 84 50, 92 56, 104 48 S 122 12, 134 14 S 148 44, 156 50 L 166 52" fill="none" stroke="' + (up ? "#C46B5A" : "#D3E1D7") + '" stroke-width="2.4"/>' +
+      '<path d="M70 52 C 84 54, 94 58, 106 72 S 124 96, 136 92 S 150 62, 166 52" fill="none" stroke="' + (dn ? "#6C7A96" : "#D3E1D7") + '" stroke-width="2.4"/>' +
+      '<path d="M8 52 L 162 52" fill="none" stroke="#2E7D5B" stroke-width="2.4" stroke-dasharray="1 0" opacity=".0"/>' +
+      '<text x="4" y="12" font-size="9" font-weight="700" fill="#6B7A71" letter-spacing="1">OF MIKIÐ</text><text x="4" y="56" font-size="9" font-weight="700" fill="#2E7D5B" letter-spacing="1">GLUGGINN</text><text x="4" y="102" font-size="9" font-weight="700" fill="#6B7A71" letter-spacing="1">OF LÍTIÐ</text></svg><span>Glugginn minn</span></div>';
+  }
+  var COPY = "© 2026 Dr. Sigrún Þóra Sveinsdóttir, sálfræðingur. Öll réttindi áskilin. Kemur ekki í stað faglegrar aðstoðar.";
+  function who() { return A.name.trim() ? esc(A.name.trim()) + " · " : ""; }
+  function refBook() { var list = []; return { n: function (id) { var k = list.indexOf(id); if (k < 0) { list.push(id); k = list.length - 1; } return k + 1; }, list: list }; }
+  function sups(rb, ids) { return ids.length ? "<sup>" + ids.map(function (id) { return rb.n(id); }).join(",") + "</sup>" : ""; }
+  function footRefs(rb) { return '<div class="refs">' + rb.list.map(function (id, k) { return "<span>" + (k + 1) + ". " + esc(REFS[id]) + "</span>"; }).join("") + "</div>"; }
+
+  function sheet1() {
+    var rb = refBook(), ps = plan(), tl = ["10<small>SEK</small>", "1–2<small>MÍN</small>", "5<small>MÍN</small>"], lab = ["Strax", "Ef ég hef mínútu", "Þegar ég get stigið frá"];
+    var sub = { up: "Kerfið mitt fer oftast upp. Markmiðið: að setja fótinn á bremsuna.", down: "Kerfið mitt fer oftast niður. Markmiðið: að kveikja varlega á mér aftur.", any: "Kerfið mitt fer ýmist upp eða niður. Markmiðið: að rata aftur inn í gluggann." }[A.dir || "any"];
+    var h = '<div class="a4"><div class="hdr">' + RIDGE + '<div class="hrow"><div><div class="k">' + who() + "Í augnablikinu</div><h1>Þegar álagið hefur<br>áhrif á mig</h1><div class=\"sub\">" + esc(sub) + sups(rb, ["siegel"]) + "</div></div>" + myWindow() + "</div></div>";
+    h += '<div class="start"><b>Ég tek eftir merkjunum mínum</b><div class="tags">' + A.signals.map(function (s) { var o = SIGNALS.filter(function (x) { return x.t === s; })[0]; return '<span class="tag">' + ic(o ? o.i : "eye") + esc(s) + "</span>"; }).join("") + "</div></div>";
+    h += '<div class="vline arrow"></div><div style="height:6px"></div>';
+    ps.forEach(function (p, k) {
+      h += '<div class="stp"><div class="tm">' + tl[p.lv - 1] + '</div><div class="sc"><div class="hd">' + ic(p.i) + "<h3>" + esc(p.t) + '</h3><span class="lab">' + lab[p.lv - 1] + "</span></div><ul>" + p.s.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + '</ul><div class="why">' + esc(p.why) + sups(rb, p.refs) + "</div></div></div>";
+      if (k < ps.length - 1) h += '<div class="dec"><div class="l"><span>NEI</span></div><div class="yes"><span class="q">Betra?</span>' + ic("arrow-right") + '<span class="ok">Já: ég held áfram deginum</span></div></div>';
+    });
+    h += '<div class="vline arrow"></div><div style="height:6px"></div>';
+    var buf = A.buffer.trim();
+    h += '<div class="end"><b>Enn erfitt?</b> ' + "Ég leita til stuðpúðans míns" + (buf ? ": <b>" + esc(buf) + "</b>." : ", einhvers sem mér líður vel með.") + " Ég þarf ekki að gera þetta ein/n." + sups(rb, ["coan", "cohen"]) + "</div>";
+    h += '<div class="sent"><div><div class="k">Setningin mín</div><div class="q">„' + esc(sentence().replace(/[„“"]/g, "")) + "“</div></div></div>";
+    h += '<div class="foot">' + footRefs(rb) + "<span>" + COPY + "</span></div></div>";
+    return h;
+  }
+
+  function sheet2() {
+    var rb = refBook(), ps = plan(), p2 = ps[1] || ps[0], p1 = ps[0];
+    var slots = { morgun: [], dagur: [], lok: [], kvold: [] };
+    A.moments.forEach(function (m, k) {
+      var o = MOMENTS.filter(function (x) { return x.t === m; })[0], pa = A.pauses.length ? pauseById(A.pauses[k % A.pauses.length]) : (k === 0 ? p2 : p1);
+      var txt = m === "Þegar ég tek eftir merkjunum mínum" ? "Ég fylgi flæðiritinu mínu" : pa.t + (pa.tm ? " · " + pa.tm : "");
+      slots[o ? o.slot : "dagur"].push({ b: m, t: txt });
+    });
+    slots.lok.push({ b: "Lokun dagsins", t: closing() });
+    A.nourish.forEach(function (n) { if (nourishGroup(n).g === "Svefn") slots.kvold.push({ b: "Svefn", t: n }); });
+    var cols = [["morgun", "Morgunn", "sun-horizon"], ["dagur", "Vinnudagurinn", "sun"], ["lok", "Lok vinnudags", "house"], ["kvold", "Kvöldið", "moon-stars"]];
+    var h = '<div class="a4"><div class="hdr">' + RIDGE + STAR + '<div class="k">' + who() + "Endurheimtin mín</div><h1 style=\"font-size:34px\">Svona hlúi ég að orku og taugakerfi</h1><div class=\"sub\">Virkjun er ekki vandamálið. Vandinn er þegar endurheimtin fylgir ekki á eftir." + sups(rb, ["mcewen"]) + "</div></div>";
+    h += '<div class="day">';
+    cols.forEach(function (c) {
+      h += '<div class="col"><div class="dot">' + ic(c[2]) + "</div><h3>" + c[1] + "</h3>";
+      if (!slots[c[0]].length) h += '<div class="it empty">Ekkert fast, og það er í lagi</div>';
+      slots[c[0]].forEach(function (it) { h += '<div class="it"><b>' + esc(it.b) + "</b>" + esc(it.t) + "</div>"; });
+      h += "</div>";
+    });
+    h += "</div>";
+    h += '<p class="note2">Föst augnablik gera pásuna að venju' + sups(rb, ["gollwitzer"]) + ". Að aftengjast vinnunni er lykilþáttur endurheimtar" + sups(rb, ["sonnentag"]) + ".</p>";
+    if (A.pauses.length) {
+      h += '<div class="sec"><h2>Örpásumatseðillinn minn' + sups(rb, ["albulescu", "kim"]) + ' <span style=\"font-family:var(--body);font-size:11px;color:#6B7A71\">· gríp í hvaða pásu sem er</span></h2><div class="menu">';
+      A.pauses.forEach(function (id) { var pa = pauseById(id); h += '<div class="mi"><span class="mc">' + ic(pa.i) + "</span><div><b>" + esc(pa.t) + sups(rb, pa.refs) + "</b><span>" + esc(pa.tm) + "</span></div></div>"; });
+      h += "</div></div>";
+    }
+    var other = A.nourish.filter(function (n) { return nourishGroup(n).g !== "Svefn"; });
+    if (other.length) h += '<div class="sec"><h2>Í vikunni nærir mig</h2><div class="nour">' + other.map(function (n) { return "<span>" + ic(nourishGroup(n).i) + esc(n) + "</span>"; }).join("") + "</div></div>";
+    if (A.first.trim()) h += '<div class="first"><b>Fyrsta litla skrefið mitt:</b> ' + esc(A.first.trim()) + "</div>";
+    var rows = [];
+    A.moments.forEach(function (m) { rows.push("Örpása " + m.charAt(0).toLowerCase() + m.slice(1)); });
+    rows.push("Lokun dagsins");
+    A.nourish.forEach(function (n) { rows.push(n); });
+    rows = rows.slice(0, 6);
+    var days = ["Mán", "Þri", "Mið", "Fim", "Fös", "Lau", "Sun"];
+    h += '<div class="sec"><h2>Vikan mín</h2><table><thead><tr><th></th>' + days.map(function (d) { return "<th>" + d + "</th>"; }).join("") + "</tr></thead><tbody>";
+    rows.forEach(function (r) { h += "<tr><td>" + esc(r) + "</td>" + days.map(function () { return '<td class="d"><span></span></td>'; }).join("") + "</tr>"; });
+    h += "</tbody></table></div>";
+    h += '<p class="quote">Að hlúa að sjálfum sér er ekki lúxus. Það er grunnurinn.</p>';
+    h += '<div class="foot">' + footRefs(rb) + "<span>" + COPY + "</span></div></div>";
+    return h;
+  }
+
+  function result() {
+    var ps = plan(), tl = ["10<small>SEK</small>", "1–2<small>MÍN</small>", "5<small>MÍN</small>"];
+    var h = '<div class="done-hero"><span class="spark">' + ic("sparkle") + '</span><p class="eyebrow">' + (demo ? "Dæmi" : "Tilbúið") + "</p><h1>Vel gert" + (A.name.trim() && !demo ? ", " + esc(A.name.trim()) : "") + ".</h1><p class=\"muted\">" + esc(GOALS[A.dir || "any"]) + " Hér eru aðferðirnar þínar. Prófaðu þær núna, svo líkaminn muni þær.</p></div>";
+    h += '<div class="methods">' + ps.map(function (p) { return '<div class="m"><div class="t">' + tl[p.lv - 1] + "</div><div><b>" + ic(p.i) + esc(p.t) + "</b><span>" + esc(p.s[0]) + '</span></div><button class="try" data-try="' + p.id + '">' + (p.guide ? "Prófa" : "Skoða") + "</button></div>"; }).join("") + "</div>";
+    h += '<div class="actions"><button class="btn" id="dl">' + ic("download-simple") + ' Sækja PDF til að prenta</button><button class="btn ghost" id="edit">' + ic("pencil-simple") + " Breyta svörum</button></div><p class=\"fine\" id=\"dl-msg\">Tvö A4-blöð. Hengdu flæðiritið upp þar sem þú sérð það, eða vistaðu það í símanum.</p>";
+    h += '<div class="sheets"><div class="preview"><div class="preview-inner">' + sheet1() + '</div></div><div class="preview"><div class="preview-inner">' + sheet2() + "</div></div></div>";
+    var all = []; ps.forEach(function (p) { p.refs.forEach(function (r) { if (all.indexOf(r) < 0) all.push(r); }); });
+    ["siegel", "coan", "cohen", "mcewen", "albulescu", "gollwitzer", "sonnentag"].forEach(function (r) { if (all.indexOf(r) < 0) all.push(r); });
+    h += '<details class="refs"><summary>Rannsóknirnar á bak við þetta</summary><ol class="fine">' + all.map(function (r) { return "<li>" + esc(REFS[r]) + "</li>"; }).join("") + "</ol></details>";
+    h += '<p class="fine">' + COPY + " Ef vanlíðan varir, leitaðu til heilsugæslunnar eða hringdu í Hjálparsíma Rauða krossins, 1717.</p>";
+    h += '<div class="nav"><button class="btn soft" id="restart">Byrja upp á nýtt</button></div>';
+    return h;
+  }
+  function fitPreviews() {
+    $$(".preview").forEach(function (pv) { var inner = $(".preview-inner", pv), k = pv.clientWidth / 794; inner.style.transform = "scale(" + k + ")"; pv.style.height = (1123 * k) + "px"; });
+  }
+  window.addEventListener("resize", function () { if (Q[step].key === "result") fitPreviews(); });
+
+  // ---------- PDF ----------
+  function loadScript(src) {
+    return new Promise(function (res, rej) {
+      if (document.querySelector('script[src="' + src + '"]')) return res();
+      var s = document.createElement("script"); s.src = src; s.onload = function () { res(); }; s.onerror = function () { rej(new Error("load")); };
+      document.head.appendChild(s);
+    });
+  }
+  function saveBlob(blob, name) {
+    var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+  }
+  var downloadsP = (window.claude && window.claude.use) ? window.claude.use("downloads") : Promise.resolve(null);
+  function downloadPdf() {
+    var btn = $("#dl"), msg = $("#dl-msg"), zone = $("#render-zone");
+    btn.disabled = true; msg.textContent = "Bý til PDF …";
+    zone.innerHTML = sheet1() + sheet2();
+    Promise.all([
+      loadScript("https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"),
+      loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"),
+      document.fonts ? document.fonts.ready : Promise.resolve()
+    ]).then(function () {
+      return $$(".a4", zone).reduce(function (acc, el) {
+        return acc.then(function (list) { return window.html2canvas(el, { scale: 2, backgroundColor: "#FFFFFF" }).then(function (c) { list.push(c); return list; }); });
+      }, Promise.resolve([]));
+    }).then(function (canvases) {
+      var pdf = new window.jspdf.jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+      canvases.forEach(function (c, k) { if (k) pdf.addPage(); pdf.addImage(c.toDataURL("image/jpeg", 0.92), "JPEG", 0, 0, 210, 297); });
+      var blob = pdf.output("blob");
+      return downloadsP.then(function (dl) {
+        if (!dl) { saveBlob(blob, "Mitt jafnvægi" + (A.name.trim() ? " - " + A.name.trim() : "") + ".pdf"); msg.textContent = "PDF sótt. Opnaðu það til að prenta."; return; }
+        var fname = "Mitt jafnvægi" + (A.name.trim() ? " - " + A.name.trim() : "") + ".pdf";
+        return dl.save({ filename: fname, data: blob }).then(function () { msg.textContent = "PDF vistað. Opnaðu það til að prenta."; }, function (e) {
+          var code = e && e.code;
+          msg.textContent = code === "declined" ? "Hætt við niðurhal." : code === "rate_limited" ? "Bíddu andartak og reyndu aftur." : "Niðurhal tókst ekki hér. Taktu skjáskot af blöðunum í staðinn.";
+        });
+      });
+    }).catch(function () { msg.textContent = "Ekki tókst að búa til PDF. Taktu skjáskot af blöðunum hér fyrir neðan í staðinn."; })
+      .then(function () { btn.disabled = false; zone.innerHTML = ""; });
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Figtree:wght@400;500;600;700&display=swap">
+</head>
+<body>
+﻿<title>Verkfærakistan</title>
+<style>
+/* Layout: a locked door (deep green) that opens onto one calm column of three resource cards. */
+:root {
+  --bg: #F4F8F4; --surface: #FFFFFF; --tint: #E6F0E9; --line: #D3E1D7;
+  --ink: #1C2A23; --muted: #5A6B61; --deep: #1B4D3E; --mid: #2E7D5B; --on-deep: #FFFFFF; --sage: #9CC5AC; --gold: #C9A24B; --err: #B5503F;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E1914; --surface: #15241D; --tint: #1C3328; --line: #2A4336;
+  --ink: #E5EFE8; --muted: #A2B6AA; --deep: #A9D7BB; --mid: #6CC093; --on-deep: #0E1914; --sage: #4E7A62; --gold: #D7B565; --err: #E08A78; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0E1914; --surface: #15241D; --tint: #1C3328; --line: #2A4336;
+  --ink: #E5EFE8; --muted: #A2B6AA; --deep: #A9D7BB; --mid: #6CC093; --on-deep: #0E1914; --sage: #4E7A62; --gold: #D7B565; --err: #E08A78; color-scheme: dark }
+
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+body { background: var(--bg); color: var(--ink); font: 17px/1.55 var(--body); margin: 0 }
+.wrap { max-width: 680px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; color: var(--deep); text-wrap: balance; margin: 0 }
+p { margin: 0 }
+button, input { font: inherit; color: inherit }
+:focus-visible { outline: 2px solid var(--mid); outline-offset: 2px }
+.eyebrow { font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--mid) }
+.fine { font-size: .8rem; color: var(--muted) }
+
+/* door */
+.door { min-height: 100%; display: grid; place-items: center; padding-block: 40px }
+.gate { width: 100%; max-width: 420px; background: #1B4D3E; color: #FFFFFF; border-radius: 26px; padding: 30px 26px 26px; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 16px }
+.gate h1 { color: #FFFFFF; font-size: 2.3rem; line-height: 1.08 }
+.gate .eyebrow { color: #9CC5AC }
+.gate p { color: #D7E7DD }
+.gate .ridge { position: absolute; right: -8px; bottom: -4px; width: 70%; opacity: .25; color: #CFE3D6 }
+.gate .ridge path { fill: none; stroke: currentColor; stroke-width: 1.4 }
+.gate .starm { position: absolute; right: 24px; top: 22px; width: 32px; color: #C9A24B }
+.gate .starm line { stroke: currentColor; stroke-width: 1.6; stroke-linecap: round }
+.gate > *:not(svg) { position: relative }
+.gate label { display: flex; flex-direction: column; gap: 6px; font-size: .88rem; font-weight: 600; color: #DCEBE1 }
+.gate input { background: #FFFFFF; color: #1C2A23; border: 0; border-radius: 12px; padding: 12px 14px; font-size: 1rem }
+.gate .go { border: 0; background: #9CC5AC; color: #12352A; font-weight: 700; border-radius: 999px; padding: 13px 20px; cursor: pointer }
+.gate .err { color: #F2B8AC; font-size: .9rem; min-height: 1.3em }
+
+/* inside */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line) }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg) }
+.top .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 12px; gap: 12px }
+.brand { font-family: var(--display); font-size: 1.2rem; color: var(--deep) }
+.out { border: 0; background: var(--tint); color: var(--deep); font-weight: 600; font-size: .85rem; border-radius: 999px; padding: 7px 14px; cursor: pointer }
+main .wrap { padding-block: 28px 48px; display: flex; flex-direction: column; gap: 22px }
+.intro { display: flex; flex-direction: column; gap: 10px }
+.intro h1 { font-size: 2.1rem; line-height: 1.12 }
+.sign { font-family: var(--display); font-style: italic; color: var(--deep) }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px }
+.card-head { display: flex; gap: 14px; align-items: center }
+.badge { flex: none; width: 52px; height: 52px; border-radius: 50%; background: var(--tint); color: var(--deep); display: grid; place-items: center }
+.badge svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round }
+.card h2 { font-size: 1.45rem; line-height: 1.2 }
+.meta { font-size: .85rem; color: var(--muted) }
+.card p.d { color: var(--muted) }
+audio { width: 100%; height: 44px }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+.btn { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--deep); background: var(--deep); color: var(--on-deep); border-radius: 999px; padding: 10px 18px; font-weight: 600; text-decoration: none; cursor: pointer; font-size: .95rem }
+.btn.ghost { background: transparent; color: var(--deep) }
+.btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+.msg { font-size: .85rem; color: var(--muted); min-height: 1.2em }
+.mapimg { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); display: block; background: #fff }
+.tips { margin: 0; padding-left: 1.2em; color: var(--muted); font-size: .92rem; display: flex; flex-direction: column; gap: 4px }
+.rain { background: var(--deep); color: var(--on-deep); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px }
+.rain .rain-h { font-family: var(--display); font-size: 1.25rem }
+.rain .rain-d { opacity: .85; font-size: .92rem }
+.rain ol { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: .95rem }
+.rain .src { font-size: .75rem; opacity: .75; font-style: italic }
+details.grp { border: 1px solid var(--line); border-radius: 14px; padding: 4px 14px }
+details.grp summary { cursor: pointer; font-weight: 600; color: var(--deep); padding: 10px 0 }
+.mlist { display: flex; flex-direction: column; gap: 10px; padding: 2px 0 12px }
+.mlist .mi { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 10px }
+.mlist .mi span { color: var(--ink); font-size: .95rem }
+.mlist .mi small { color: var(--mid); font-size: .75rem; font-style: italic }
+.help { background: var(--tint); border-radius: 16px; padding: 14px 16px; font-size: .92rem }
+footer .wrap { padding-block: 0 36px; display: flex; flex-direction: column; gap: 4px; font-size: .8rem; color: var(--muted) }
+</style>
+
+<!-- ============ DOOR ============ -->
+<section class="door wrap" id="door">
+  <form class="gate" id="gate" autocomplete="off">
+    <svg class="ridge" viewBox="0 0 300 120" aria-hidden="true"><path d="M0 110 L40 70 L62 84 L104 30 L130 58 L150 44 L190 90 L214 64 L240 80 L270 40 L300 70"/><path d="M0 120 L30 96 L70 104 L110 76 L150 98 L200 84 L240 104 L300 90"/></svg>
+    <svg class="starm" viewBox="0 0 34 34" aria-hidden="true"><line x1="17" y1="2" x2="17" y2="32"/><line x1="2" y1="17" x2="32" y2="17"/><line x1="11" y1="11" x2="23" y2="23"/><line x1="23" y1="11" x2="11" y2="23"/></svg>
+    <p class="eyebrow">Ró og endurheimt</p>
+    <h1>Verkfærakistan</h1>
+    <p>Hugleiðsla, kort og verkfæri til að hlúa að eigin taugakerfi. Skráðu þig inn með notandanafninu og lykilorðinu sem þú fékkst.</p>
+    <label for="u">Notandanafn<input id="u" name="u" type="text" autocapitalize="off" spellcheck="false"></label>
+    <label for="p">Lykilorð<input id="p" name="p" type="password"></label>
+    <p class="err" id="err" role="alert"></p>
+    <button class="go" type="submit">Opna</button>
+  </form>
+</section>
+
+<!-- ============ INSIDE ============ -->
+<div id="inside" hidden>
+  <header class="top"><div class="wrap"><span class="brand">Verkfærakistan</span><button class="out" id="out" type="button">Skrá út</button></div></header>
+  <main><div class="wrap" id="content"></div></main>
+  <footer><div class="wrap">
+    <span>© 2026 Dr. Sigrún Þóra Sveinsdóttir, sálfræðingur. Öll réttindi áskilin. Efnið er ætlað þátttakendum og ekki til dreifingar.</span>
+    <span>Verkfærin koma ekki í stað faglegrar aðstoðar. Ef vanlíðan varir, leitaðu til heilsugæslunnar eða hringdu í Hjálparsíma Rauða krossins, 1717.</span>
+  </div></footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var HASH = "2429ac67649b318c0bdea6970c745afd531bc94dc361698679bac5420dc0e1c2"; // sha256("notandi:lykilord")
+  var KEY = "verkfaerakistan-inni";
+  var TOOL = "mitt-jafnvaegi.html";
+  function $(s) { return document.querySelector(s); }
+  var ICON = {
+    wave: '<svg viewBox="0 0 24 24"><path d="M2 12c2.5 0 2.5-6 5-6s2.5 12 5 12 2.5-12 5-12 2.5 6 5 6"/></svg>',
+    leaf: '<svg viewBox="0 0 24 24"><path d="M5 19c0-8 6-14 15-14 0 9-6 15-14 15"/><path d="M5 19l8-8"/></svg>',
+    map: '<svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>',
+    down: '<svg viewBox="0 0 24 24"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>',
+    open: '<svg viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 14v5H5V5h5"/></svg>'
+  };
+
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join(""); }
+  function check(u, p) {
+    var s = u.trim().toLowerCase() + ":" + p;
+    if (window.crypto && crypto.subtle) return crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)).then(function (b) { return hex(b) === HASH; });
+    return Promise.resolve(false);
+  }
+  function remember(v) { try { if (v) localStorage.setItem(KEY, "1"); else localStorage.removeItem(KEY); } catch (e) {} }
+  function remembered() { try { return localStorage.getItem(KEY) === "1"; } catch (e) { return false; } }
+
+  $("#gate").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var err = $("#err"); err.textContent = "";
+    check($("#u").value, $("#p").value).then(function (ok) {
+      if (ok) { remember(true); open(); }
+      else { err.textContent = "Notandanafn eða lykilorð passar ekki. Prófaðu aftur."; $("#p").value = ""; $("#p").focus(); }
+    });
+  });
+  $("#out").addEventListener("click", function () { remember(false); $("#inside").hidden = true; $("#content").innerHTML = ""; $("#door").hidden = false; $("#u").value = ""; $("#p").value = ""; window.scrollTo(0, 0); });
+
+  function open() {
+    $("#door").hidden = true; $("#inside").hidden = false;
+    $("#content").innerHTML =
+      '<div class="intro"><p class="eyebrow">Velkomin</p><h1>Hér er gott að staldra við</h1>' +
+      '<p>Hér finnur þú hugleiðslu, kort og verkfæri sem hjálpa þér að ná ró og safna orku. Notaðu það sem hjálpar þér og slepptu hinu.</p><p class="sign">Sigrún Þóra</p></div>' +
+
+      '<article class="card"><div class="card-head"><span class="badge">' + ICON.wave + '</span><div><h2>Hjartaöndun</h2><p class="meta">Leidd hugleiðsla · 9 mínútur</p></div></div>' +
+      '<p class="d">Hæg öndun og hlý tilfinning. Gott að gera daglega, eða þegar þú vilt hlaða á forðann. Finndu rólegan stað og settu á þig heyrnartól ef þú getur.</p>' +
+      '<audio controls preload="none" src="hjartaondun.m4a"></audio>' +
+      '<div class="row"><button class="btn ghost" data-dl="hjartaondun.m4a" data-name="Hjartaöndun - Sigrún Þóra.m4a">' + ICON.down + ' Sækja upptökuna</button></div><p class="msg" data-msg="hjartaondun.m4a"></p></article>' +
+
+      '<article class="card"><div class="card-head"><span class="badge">' + ICON.map + '</span><div><h2>Kort yfir aðferðir í rauntíma</h2><p class="meta">Hvað get ég gert, núna?</p></div></div>' +
+      '<p class="d">Finndu hvar þú ert á skalanum og veldu dálkinn sem aðstæður leyfa. PDF-skjalið er tvær síður: kortið og skýringar á hverri aðferð. Gott að prenta og hengja upp.</p>' +
+      '<img class="mapimg" src="kort-skoda.png" alt="Kort yfir aðferðir í rauntíma: fimm stig ástands á móti því hvað aðstæður leyfa, 10 sekúndur, 1–2 mínútur eða 5 mínútur og meira.">' +
+      '<div class="row"><button class="btn ghost" data-dl="kort.pdf" data-name="Kort og aðferðir - Sigrún Þóra.pdf">' + ICON.down + ' Sækja kortið (PDF)</button></div><p class="msg" data-msg="kort.pdf"></p></article>' +
+      explained() +
+
+      '<article class="card"><div class="card-head"><span class="badge">' + ICON.leaf + '</span><div><h2>Mitt jafnvægi</h2><p class="meta">Persónulegt verkfæri · um 5 mínútur</p></div></div>' +
+      '<p class="d">Svaraðu nokkrum spurningum og fáðu þitt eigið flæðirit fyrir erfiðu augnablikin og endurheimtarplan fyrir vikuna, tilbúið til prentunar. Svörin vistast aðeins í þínu tæki.</p>' +
+      '<div class="row"><a class="btn" href="' + TOOL + '">' + ICON.open + " Opna verkfærið</a></div></article>" +
+
+      '<div class="help"><b>Mundu:</b> þú þarft ekki að gera þetta ein/n. Ef vanlíðan varir, talaðu við einhvern sem þú treystir, heilsugæsluna eða hringdu í Hjálparsíma Rauða krossins, 1717.</div>';
+    bindDownloads(); window.scrollTo(0, 0);
+  }
+
+  var GROUPS = [
+    ["Öndun", [["Ein löng útöndun", "Andaðu hægt út, lengur en þú andar inn, eins og þú blásir á kerti.", "Laborde o.fl., 2022"],
+               ["Tvöfalt andvarp", "Inn um nefið, smá meira inn ofan á, svo langt og hægt út um munninn. 2–5 sinnum.", "Balban o.fl., 2023"],
+               ["Hæg öndun", "Inn á meðan þú telur upp að fjórum, út upp að sex. Nokkrar mínútur í senn.", "Laborde o.fl., 2022; Zaccaro o.fl., 2018"],
+               ["Hjartaöndun", "Hönd á bringu og hægari öndun. Hugsaðu um einhvern sem þér þykir vænt um.", "McCraty o.fl., 2009"]]],
+    ["Líkaminn", [["Fætur í gólfið", "Finndu iljarnar þrýsta niður og þyngd líkamans í stólnum.", "Klínísk aðferð"],
+                  ["Spenna og sleppa", "Lyftu öxlunum upp að eyrum í fimm sekúndur, slepptu og finndu muninn.", "Manzoni o.fl., 2008"],
+                  ["Hreyfing og dagsbirta", "Stattu upp, teygðu þig, rúllaðu öxlum eða gakktu út. Jafnvel 2–5 mínútur skipta máli.", "Albulescu o.fl., 2022; Lee o.fl., 2015"],
+                  ["Taktu eftir umhverfinu", "Nefndu þrjá hluti sem þú sérð, tvö hljóð sem þú heyrir og eitt sem þú finnur.", "Klínísk aðferð"]]],
+    ["Hugurinn og mildi", [["Nefndu tilfinninguna", "Segðu í huganum: „Þetta er streita.“ Að setja orð á tilfinningu dregur úr henni.", "Lieberman o.fl., 2007"],
+                           ["Stoppa og staldra við", "Stoppaðu, andaðu einu sinni, taktu eftir líkama og hugsunum, veldu svo næsta skref.", "Khoury o.fl., 2015"],
+                           ["Mild orð við þig", "Hönd á hjartað: „Þetta er erfitt augnablik. Ég er ekki ein/n um þetta. Ég má sýna mér mildi.“", "Neff, 2003; Ferrari o.fl., 2019"],
+                           ["Njóttu augnabliksins", "Staldraðu við eitthvað gott í þrjá andardrætti: birtu, hlátur, kaffibolla.", "Bryant & Veroff, 2007"]]],
+    ["Tengsl", [["Bros og augnsamband", "Leitaðu að vinalegu andliti. Taugakerfið róast í návist fólks sem okkur líður vel með.", "Palumbo o.fl., 2017"],
+                ["Hlé með einhverjum", "Kaffi eða stutt ganga með einhverjum, um eitthvað annað en vinnuna.", "Kim o.fl., 2017; Cohen & Wills, 1985"],
+                ["Leitaðu til einhvers", "Til manneskju sem þér líður vel með. Ef vanlíðan varir: heilsugæslan eða Hjálparsíminn 1717.", "Coan o.fl., 2006"]]]
+  ];
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function explained() {
+    var h = '<article class="card"><div class="card-head"><span class="badge">' + ICON.leaf + '</span><div><h2>Aðferðirnar útskýrðar</h2><p class="meta">Svona gerirðu hverja aðferð á kortinu</p></div></div>';
+    h += '<div class="rain"><p class="rain-h">RAIN: mild athygli</p><p class="rain-d">Gott þegar tilfinningin er sterk og þú hefur nokkrar mínútur.</p><ol>' +
+      '<li><b>R · Taktu eftir:</b> Hvað er að gerast í mér núna?</li>' +
+      '<li><b>A · Leyfðu:</b> Það má vera svona, í smástund. Þú þarft ekki að laga það strax.</li>' +
+      '<li><b>I · Kannaðu með mildi:</b> Hvar finn ég þetta í líkamanum? Hvað þarf ég?</li>' +
+      '<li><b>N · Nærðu:</b> Hönd á hjartað. Hvað myndi ég segja við góðan vin í sömu stöðu?</li></ol>' +
+      '<p class="src">Recognize, Allow, Investigate, Nurture · Brach, 2019</p></div>';
+    GROUPS.forEach(function (g) {
+      h += '<details class="grp"><summary>' + esc(g[0]) + '</summary><div class="mlist">';
+      g[1].forEach(function (m) { h += '<div class="mi"><b>' + esc(m[0]) + '</b><span>' + esc(m[1]) + '</span><small>' + esc(m[2]) + '</small></div>'; });
+      h += '</div></details>';
+    });
+    h += '<p class="fine">„Klínísk aðferð“: notuð í meðferð en lítið rannsökuð ein og sér. Kortið byggir á hugmyndinni um þolgluggann (Siegel, 1999).</p></article>';
+    return h;
+  }
+  function saveBlob(blob, name) {
+    var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+  }
+  var dlP = (window.claude && window.claude.use) ? window.claude.use("downloads") : Promise.resolve(null);
+  function bindDownloads() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-dl]"), function (b) {
+      b.addEventListener("click", function () {
+        var msg = document.querySelector('[data-msg="' + b.dataset.dl + '"]');
+        b.disabled = true; msg.textContent = "Sæki …";
+        Promise.all([dlP, fetch(b.dataset.dl).then(function (r) { if (!r.ok) throw new Error("http"); return r.blob(); })])
+          .then(function (res) {
+            var dl = res[0], blob = res[1];
+            if (!dl) { saveBlob(blob, b.dataset.name); msg.textContent = "Sótt."; return; }
+            return dl.save({ filename: b.dataset.name, data: blob }).then(function () { msg.textContent = "Vistað."; }, function (e) {
+              var c = e && e.code; msg.textContent = c === "declined" ? "Hætt við." : c === "rate_limited" ? "Bíddu andartak og reyndu aftur." : "Niðurhal tókst ekki hér.";
+            });
+          })
+          .catch(function () { msg.textContent = "Ekki tókst að sækja skrána. Reyndu aftur síðar."; })
+          .then(function () { b.disabled = false; });
+      });
+    });
+  }
+
+  if (remembered()) open(); else setTimeout(function () { try { $("#u").focus(); } catch (e) {} }, 50);
+})();
+</script>
+
+</body>
+</html>
